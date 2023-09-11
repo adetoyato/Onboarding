@@ -14,6 +14,10 @@
             <button type="submit" name="button">
                 Login 
             </button>
+            <router-link to ="/register">
+                Don't have an account? Sign up now!
+            </router-link>
+        </form>
     </div>
 </template>
 
@@ -23,6 +27,17 @@
             return{
                 email: '',
                 password: '',
+            }
+        },
+        methods: {
+            login () {
+                this.$store.dispatch('login', {
+                    email: this.email,
+                    password: this.password
+                })
+                .then( () => {
+                    this.$router.push({ name: 'dashboard' })
+                })
             }
         }
     }
