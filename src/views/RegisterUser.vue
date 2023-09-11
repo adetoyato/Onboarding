@@ -20,11 +20,12 @@
                 Sign Up
             </button>
         </form>
-        </div> 
-</template>
+        </div>
+</template> 
 
 <script>
-    export default {
+
+        export default {
     data() {
         return{
             name: '',
@@ -40,7 +41,7 @@
                 password: this.password
             })
             .then( () => {
-               this.router.push({ name: 'dashboard' }) 
+               this.$router.push({ name: 'dashboard' }) 
             })
         }
     }
@@ -49,4 +50,10 @@
 
 <style scoped>
 
-</style>
+#name {
+    position: absolute;
+    left: 100px;
+    right: 150px;
+}
+
+</style> 
