@@ -50,10 +50,5 @@
 
 <style scoped>
 
-#name {
-    position: absolute;
-    left: 100px;
-    right: 150px;
-}
 
 </style> 
