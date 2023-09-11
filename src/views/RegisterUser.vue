@@ -20,7 +20,7 @@
                 Sign Up
             </button>
              <router-link to ="/login">
-                Already have an account? Login
+                Already have an account? Login.
             </router-link>
         </form>
         </div>
