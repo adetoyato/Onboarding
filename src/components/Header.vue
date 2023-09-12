@@ -13,7 +13,7 @@
         }
     }
 </script>
-<style scoped>
+<style>
 header {
     background-color: #e3580e;
     color: #fff;
@@ -23,4 +23,8 @@ header {
     text-align: left;
 }
 
+body{
+    background-color: #000;
+    color: #fff;
+}
 </style>
