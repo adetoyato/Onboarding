@@ -3,7 +3,7 @@
     <Header />
     <h1>Travel Now!</h1>
     <div>
-        Interested in booking your own travel?
+        Looking for some spice in your life? Book a travel now!
         <router-link to="/login">
             Login
         </router-link>

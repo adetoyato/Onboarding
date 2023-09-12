@@ -1,5 +1,6 @@
 <template>
        <div>
+        <Header />
         <form @submit.prevent="register">
             <label for="name">
                 Username:
@@ -27,8 +28,11 @@
 </template> 
 
 <script>
-
+import Header from "../components/Header.vue"
         export default {
+            components: {
+                Header
+            },
     data() {
         return{
             name: '',
