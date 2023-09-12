@@ -7,6 +7,8 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@syncfusion/ej2-vue-calendars": "^22.2.12",
+    "@syncfusion/ej2-vue-dropdowns": "^22.2.12",
     "axios": "^1.5.0",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",

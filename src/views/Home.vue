@@ -1,5 +1,6 @@
 <template>
 <div class="home">
+    <Header />
     <h1>Travel Now!</h1>
     <div>
         Interested in booking your own travel?
@@ -15,6 +16,14 @@
 </template>
 
 <script>
+
+import Header from '../components/Header.vue'
+export default {
+    name: 'Home', 
+    components: {
+        Header
+    }
+}
 </script>
 
 <style>
