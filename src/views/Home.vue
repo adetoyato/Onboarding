@@ -1,6 +1,10 @@
 <template>
-<div class="home">
+<b-container fluid>
+<b-row>
+<b-col xl="10" lg="9" sm="9">
     <Header />
+<div class="home">
+    
     <h1>Travel Now!</h1>
     <div>
         Interested in booking your own travel?
@@ -13,6 +17,9 @@
         </router-link>
     </div>
 </div>
+</b-col>
+</b-row>
+</b-container>
 </template>
 
 <script>
@@ -26,5 +33,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+h1 {
+    text-align: center;
+    margin: 300px;
+    margin-bottom: -1px;
+}
+
+div {
+    text-align: center;
+}
 </style>
