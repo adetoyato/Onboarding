@@ -1,6 +1,13 @@
 <template>
     <header class="header">
-       <h1>{{ title }}</h1> 
+       <h1>{{ title }}</h1>
+    <div>
+        <ul>
+            <li v-for="nav in navItems" :key="nav">
+
+            </li>
+        </ul>
+    </div>
     </header>
 </template>
 <script>
@@ -8,6 +15,7 @@
         name: 'Header', 
         data () {
             return {
+                navItems:['Dashboard', 'Booking', 'Profile'],
                 title: 'Lou Geh Travel'
             }
         }
