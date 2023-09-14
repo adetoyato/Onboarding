@@ -2,7 +2,7 @@
 <div class="home">
     <Header />
     <h1>Travel Now!</h1>
-    <div>
+    <div id="content">
         Looking for some spice in your life? Book a travel now!
         <router-link to="/login">
             Login
@@ -26,14 +26,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
     text-align: center;
     margin: 300px;
     margin-bottom: -1px;
 }
 
-div {
+#content {
     text-align: center;
+    border: 15px white;
+    margin: 20px;
 }
 </style>

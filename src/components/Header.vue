@@ -1,6 +1,7 @@
 <template>
-    <header class="Header">
+    <header class="header">
        <h1>{{ title }}</h1>
+       
     <div>
         <ul>
             <li v-for="nav1 in navItems" :key="nav1">
