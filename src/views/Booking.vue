@@ -4,7 +4,7 @@
         <label for="country" id="country">
             Enter Country:
         </label>
-        <input type="text" v-model="country" name="country" value>
+        <input type="text" v-model="country" name="country" id="value">
 
         <label for="city" id="city">
             Enter City:
@@ -55,7 +55,7 @@ import Header from "../components/Header.vue"
 
 #country {
     margin-top: 250px;
-    margin-left: 800px;
+    margin-left: 500px;
 }
 
 #city {

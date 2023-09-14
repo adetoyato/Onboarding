@@ -3,8 +3,8 @@
        <h1>{{ title }}</h1>
     <div>
         <ul>
-            <li v-for="nav in navItems" :key="nav">
-
+            <li v-for="nav1 in navItems" :key="nav1">
+                {{nav}}
             </li>
         </ul>
     </div>
@@ -16,7 +16,7 @@
         data () {
             return {
                 navItems:['Dashboard', 'Booking', 'Profile'],
-                title: 'Lou Geh Travel'
+                title: 'LOU GEH TRAVEL'
             }
         }
     }
@@ -29,6 +29,7 @@ header {
     padding-left: 100px;
     height: 100px;
     text-align: left;
+    font-family: impact;
 }
 
 html {
@@ -45,5 +46,9 @@ body {
     color: #fff;
 }
 
+.box {
+    border-color: #fff;
+    border-width: 3px;
+}
 
 </style>

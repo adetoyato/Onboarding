@@ -15,7 +15,7 @@
             <label for="password">
                 Password:
             </label>
-            <input v-model="password" type="password" name="password" value>
+            <input v-model="password" type="password" placeholder="At least 8 characters" name="password" value>
 
             <button type="submit" name="button">
                 Sign Up
