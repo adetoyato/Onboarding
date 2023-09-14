@@ -1,6 +1,5 @@
 <template>
-    <header class="header">
-       <h1>{{ title }}</h1>
+    <header>
        <nav class="container">
             <div class="branding">
                 <router-link class="header" :to="{ name: 'Home' }">Lou Geh Travel</router-link>
@@ -19,8 +18,8 @@
     export default {
         name: 'navigation',
         components: {
-        }
-    };
+    }
+}
         /*name: 'Header', 
         data () {
             return {
@@ -34,10 +33,8 @@
 header {
     background-color: #e3580e;
     color: #fff;
-    padding-top: 25px;
-    padding-left: 60px;
+    padding: 0px 25px;
     height: 100px;
-    text-align: left;
     font-family: impact;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
     z-index: 99;
@@ -65,6 +62,26 @@ header {
                 font-size: 24px;
                 color: #000;
                 text-decoration: none;
+            }
+        }
+
+        .nav-links {
+            position: relative;
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: flex-end;
+
+            ul{
+                margin-right: 32px;
+
+                .link {
+                    margin-right: 32px;
+                }
+
+                .link:last-child {
+                    margin-right: 0;
+                }
             }
         }
     }
