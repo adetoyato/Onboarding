@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Header />
         <div class="login">
         <form @submit.prevent="login">
             <label for="email" class="email">
@@ -25,10 +24,8 @@
 </template>
 
 <script>
-import Header from "../components/Header.vue"
     export default {
         components: {
-            Header
         },
         data () {
             return{
