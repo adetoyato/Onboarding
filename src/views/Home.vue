@@ -20,8 +20,8 @@ export default {
             },
             message1: [
                 {
-                    title: "So many places in the world...",
-                    msgHTML: "Where will you go?",
+                    title: "Don't have an account?",
+                    msgHTML: "Sign up now! Its free.",
                     coverPhoto: "travel1",
                 }
             ]

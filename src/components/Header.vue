@@ -43,6 +43,7 @@ header {
         font-weight: 500;
         padding: 0 8px;
         transition: .3 color ease;
+        color: #fff;
 
             &:hover {
              color: #531fb5;
@@ -51,16 +52,17 @@ header {
 
     nav {
         display: flex;
-        padding: 25px 0;
+        padding: 15px 0;
 
         .branding {
             display: flex;
             align-items: center;
 
             .header {
-                font-weight: 600;
-                font-size: 24px;
-                color: #000;
+                font-weight: 300;
+                font-size: 40px;
+                letter-spacing: 2px;
+                color: #fff;
                 text-decoration: none;
             }
         }
