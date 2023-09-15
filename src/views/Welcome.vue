@@ -7,10 +7,10 @@
                 <p v-if="post.welcomeScreen"> {{post.message}}</p>
                 <p class="content-preview" v-else> {{post.msgHTML}}</p>
                 <router-link class="link link-light" v-if="post.welcomeScreen" to="#">
-                    Login Now
+                    Register now
                 </router-link>
-                <router-link class="link" v-else to="#">
-                    Register
+                <router-link class="link" v-else to='../views/Login.vue'>
+                    Login now
                 </router-link>
             </div>
         </div>
@@ -139,7 +139,7 @@ export default {
 
 .wrapped:first-child {
     .welcome-content {
-        background-color: #000;
+        background-color: #2e2e2e;
         color: #fff;
     }
 }

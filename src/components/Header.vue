@@ -31,11 +31,11 @@
 </script>
 <style lang="scss">
 header {
-    background-color: #e3580e;
+    background-color: #000000;
     color: #fff;
-    padding: 0px 25px;
+    padding: 0px 40px;
     height: 100px;
-    font-family: impact;
+    font-family: Impact;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
     z-index: 99;
 
@@ -46,7 +46,8 @@ header {
         color: #fff;
 
             &:hover {
-             color: #531fb5;
+             color: #e65b0b;
+             transition: .5s color ease;
             }
     }
 
@@ -73,6 +74,7 @@ header {
             flex: 1;
             align-items: center;
             justify-content: flex-end;
+            font-size: 20px;
 
             ul{
                 margin-right: 32px;

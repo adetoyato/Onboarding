@@ -2,6 +2,7 @@
 <div class="home">
     <Welcome :post="welcomeScreen" />
     <Welcome :post="post" v-for="(post, index) in message1" :key="index" />
+    <Header :v-hide="nav-links" />
 </div>
 </template>
 
@@ -10,6 +11,7 @@ import Welcome from "../views/Welcome";
 export default {
     name: "Home", 
     components: { Welcome },
+    
     data() {
         return {
             welcomeScreen: {
@@ -20,8 +22,8 @@ export default {
             },
             message1: [
                 {
-                    title: "Don't have an account?",
-                    msgHTML: "Sign up now! Its free.",
+                    title: "Already have an account?",
+                    msgHTML: "Login to book your next travel.",
                     coverPhoto: "travel1",
                 }
             ]
