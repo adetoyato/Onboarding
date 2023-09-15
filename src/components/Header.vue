@@ -18,6 +18,16 @@
     export default {
         name: 'navigation',
         components: {
+    },
+    data() {
+        return {
+            windownWidth: null,
+        }
+    },
+    methods: {
+        checkScreen() {
+            this.windownWidth = window.innerWidth;
+        }
     }
 }
         /*name: 'Header', 
@@ -33,8 +43,7 @@
 header {
     background-color: #000000;
     color: #fff;
-    padding: 0px 40px;
-    height: 100px;
+    padding: 0 25px;
     font-family: Impact;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
     z-index: 99;
@@ -53,11 +62,13 @@ header {
 
     nav {
         display: flex;
-        padding: 15px 0;
+        padding: 25px 0px;
 
         .branding {
             display: flex;
             align-items: center;
+            position: relative;
+            right: 350px;
 
             .header {
                 font-weight: 300;
@@ -70,6 +81,7 @@ header {
 
         .nav-links {
             position: relative;
+            left: 400px;
             display: flex;
             flex: 1;
             align-items: center;
@@ -77,14 +89,14 @@ header {
             font-size: 20px;
 
             ul{
-                margin-right: 32px;
+                margin-right: 35px;
 
                 .link {
-                    margin-right: 32px;
+                    margin-right: 35px;
                 }
 
                 .link:last-child {
-                    margin-right: 0;
+                    margin-right: 35px;
                 }
             }
         }
@@ -96,18 +108,5 @@ header {
   background-size: cover;
   box-shadow: inset 0 0 0 2000px rgba(0,0,0,0.5);
 }*/
-
-body {
-    /*background-image: url("https://get.pxhere.com/photo/sky-air-travel-airplane-aerospace-engineering-aviation-cloud-vehicle-aircraft-airline-airliner-evening-sunset-morning-sunrise-flight-business-jet-aircraft-engine-takeoff-landing-wide-body-aircraft-afterglow-dusk-jet-engine-narrow-body-aircraft-general-aviation-light-aircraft-jet-aircraft-dawn-wing-airport-1612630.jpg");
-    background-position: center;
-    background-size: 2500px;*/
-    background-color: #fff;
-    color: #fff;
-}
-
-.box {
-    border-color: #fff;
-    border-width: 3px;
-}
 
 </style>

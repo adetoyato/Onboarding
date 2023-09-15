@@ -7,10 +7,10 @@
                 <p v-if="post.welcomeScreen"> {{post.message}}</p>
                 <p class="content-preview" v-else> {{post.msgHTML}}</p>
                 <router-link class="link link-light" v-if="post.welcomeScreen" to="#">
-                    Register now
+                    Register
                 </router-link>
                 <router-link class="link" v-else to='../views/Login.vue'>
-                    Login now
+                    Login
                 </router-link>
             </div>
         </div>
@@ -25,6 +25,8 @@
 export default {
     name: "Welcome",
     props: ["post"],
+    components: {
+    }
 }
 </script>
 
@@ -63,6 +65,8 @@ export default {
             h2 {
                 font-size: 32px;
                 font-weight: 300;
+                font-family: "kanit";
+                text-align: center;
                 text-transform: uppercase;
                 margin-bottom: 24px;
                 @media(min-width: 700px) {
@@ -71,36 +75,41 @@ export default {
             }
             
             p {
-                font-size: 15px;
+                font-size: 18px;
+                font-family: "arial";
+                padding-left: 100px;
                 font-weight: 300;
                 line-height: 1.7;
             }
 
             .content-preview {
-                font-size: 13px;
+                font-size: 18px;
+                padding-left: 70px;
                 max-height: 24px;
                 width: 250px;
                 white-space: nowrap;
-                overflow: hidden;
                 text-overflow: ellipsis;
             }
 
             .link {
                 display: inline-flex;
                 align-items: center;
+                font-family: helvetica;
                 margin-top: 32px;
                 padding-bottom: 4px;
+                padding-left: 130px;
                 border-bottom: 1px solid transparent;
-                transition: 5s ease-in all;
+                transition: .8s ease-in all;
 
                 &:hover {
-                    border-bottom-color: #303030;
+                    border-bottom-color: transparent;
+                    color: #e65b0b;
                 }
             }
 
             .link-light {
                 &:hover {
-                    border-bottom-color: #fff;
+                    border-bottom-color: transparent;
 
                 }
             }
