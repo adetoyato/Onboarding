@@ -16,13 +16,13 @@ export default {
                 title: "Looking for a little getaway?",
                 message: "Book a travel now!",
                 welcomeScreen: true,
-                photo: "coding",
+                photo: "planebg1",
             },
             message1: [
                 {
                     title: "So many places in the world...",
                     msgHTML: "Where will you go?",
-                    coverPhoto: "placeholder",
+                    coverPhoto: "travel1",
                 }
             ]
         }
