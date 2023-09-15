@@ -1,23 +1,33 @@
 <template>
 <div class="home">
-    <h1>Travel Now!</h1>
-    <div id="content">
-        Looking for some spice in your life? Book a travel now!
-        <router-link to="/login">
-            Login
-        </router-link>
-        or
-        <router-link to="/register">
-            Sign Up
-        </router-link>
-    </div>
+    <Welcome :post="welcomeScreen" />
+    <Welcome :post="post" v-for="(post, index) in message1" :key="index" />
 </div>
 </template>
 
 <script>
+import Welcome from "../views/Welcome";
 export default {
-    name: 'Home', 
-}
+    name: "Home", 
+    components: { Welcome },
+    data() {
+        return {
+            welcomeScreen: {
+                title: "Looking for a little getaway?",
+                message: "Book a travel now!",
+                welcomeScreen: true,
+                photo: "coding",
+            },
+            message1: [
+                {
+                    title: "So many places in the world...",
+                    msgHTML: "Where will you go?",
+                    coverPhoto: "placeholder",
+                }
+            ]
+        }
+    }
+}   
 </script>
 
 <style lang="scss" scoped>
