@@ -6,7 +6,7 @@
                 <h2 v-else> {{post.title}} </h2>
                 <p v-if="post.welcomeScreen"> {{post.message}}</p>
                 <p class="content-preview" v-else> {{post.msgHTML}}</p>
-                <router-link class="link link-light" v-if="post.welcomeScreen" to="#">
+                <router-link class="link link-light" v-if="post.welcomeScreen" :to="{ name: 'login' }">
                     Login/Register
                 </router-link>
                 <!-- <router-link class="link" v-else to='../views/Login.vue'>
