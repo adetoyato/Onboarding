@@ -22,8 +22,8 @@ export default {
             },
             message1: [
                 {
-                    title: "Already have an account?",
-                    msgHTML: "Login to book a travel.",
+                    title: "Places to go, things to see...",
+                    msgHTML: "What will you do next?",
                     coverPhoto: "travel1",
                 }
             ]

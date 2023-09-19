@@ -7,11 +7,11 @@
                 <p v-if="post.welcomeScreen"> {{post.message}}</p>
                 <p class="content-preview" v-else> {{post.msgHTML}}</p>
                 <router-link class="link link-light" v-if="post.welcomeScreen" to="#">
-                    Register
+                    Login/Register
                 </router-link>
-                <router-link class="link" v-else to='../views/Login.vue'>
-                    Login
-                </router-link>
+                <!-- <router-link class="link" v-else to='../views/Login.vue'>
+                    View Destinations
+                </router-link> -->
             </div>
         </div>
             <div class="welcome-photo">
@@ -84,7 +84,7 @@ export default {
 
             .content-preview {
                 font-size: 18px;
-                padding-left: 70px;
+                padding-left: 60px;
                 max-height: 24px;
                 width: 250px;
                 white-space: nowrap;
@@ -95,9 +95,9 @@ export default {
                 display: inline-flex;
                 align-items: center;
                 font-family: helvetica;
-                margin-top: 32px;
+                margin-top: 20px;
                 padding-bottom: 4px;
-                padding-left: 130px;
+                padding-left: 105px;
                 border-bottom: 1px solid transparent;
                 transition: .8s ease-in all;
 

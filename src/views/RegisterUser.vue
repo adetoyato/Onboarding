@@ -1,21 +1,36 @@
 <template>
     <div>
-        <div class="register">
-        <form @submit.prevent="register">
-            <input v-model="name" type="text" placeholder="Username" class="name" value>
-            <br>
-            <input v-model="email" type="email" placeholder="E-mail" class="email" value>
-            <br>
-            <input v-model="password" type="password" placeholder="Password" class="password" value>
-            <br>
-            <button type="submit" name="button" id="button" class="button">
-                Sign Up
-            </button>
-            <br>
-             <router-link to ="/login" class="login">
-                Already have an account? Login.
+        <div class="form-wrap">
+        <form class="register">
+            <h2> Login your account</h2>
+            <div class="inputs">
+                 <div class="input">
+                    <input type="text" placeholder="Username" v-model="username">
+                </div>
+              <b-form-datepicker id="datepicker" v-model="newDate"
+                        :date-format-options="{
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit',
+                          }" disabled>
+              </b-form-datepicker>
+                <div class="input">
+                    <input type="text" placeholder="Username" v-model="username">
+                </div>
+                <div class="input">
+                    <input type="password" placeholder="Password" v-model="password">
+                </div>
+            <p class="login-register">
+                Don't have an account? Sign up now!
+            <router-link class="router-link" :to="{ name: 'register'}">
+                Register
             </router-link>
+            </p>
+            </div>
+            <button>Login</button>
+            <div class="angle"></div>
         </form>
+            <div class="background"></div>
         </div>
     </div>
 </template> 
@@ -26,6 +41,7 @@
             },
     data() {
         return{
+            newDate: new Date(),
             name: '',
             email: '',
             password: ''

@@ -1,66 +1,137 @@
 <template>
     <div>
-        <div class="login">
-        <form @submit.prevent="login">
-            <label for="email" class="email">
-                Email: 
-            </label>
-            <input v-model="email" type="email" name="email" value>
-            <br>
-            <label for="password" class="password">
-                Password: 
-            </label>
-            <input v-model="password" type="password" name="password" value>
-            <br>
-            <button type="submit" name="button" class="button">
-                Login 
-            </button>
-            <router-link to ="/register">
+        <div class="form-wrap">
+        <form class="login">
+            <h2> Login your account</h2>
+            <div class="inputs">
+                <div class="input">
+                    <input type="text" placeholder="Username" v-model="username">
+                </div>
+                <div class="input">
+                    <input type="password" placeholder="Password" v-model="password">
+                </div>
+            <p class="login-register">
                 Don't have an account? Sign up now!
+            <router-link class="router-link" :to="{ name: 'register'}">
+                Register
             </router-link>
+            </p>
+            </div>
+            <button>Login</button>
+            <div class="angle"></div>
         </form>
+            <div class="background"></div>
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        name: "Login",
         components: {
         },
         data () {
             return{
-                email:  '',
-                password:  '',
+                email: null,
+                password: null,
             }
         },
-        methods: {
-            login () {
-                this.$store.dispatch('login', {
-                    email: this.email,
-                    password: this.password
-                })
-                .then( () => {
-                    this.$router.push({ name: 'dashboard' })
-                })
-            }
-        }
     }
 </script>
 
-<style scoped>
-.email {
-    margin-top: 300px;
-    margin-left: 800px;
-}
+<style lang="scss">
+.form-wrap {
+    overflow: hidden;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-self: center;
+    margin: 0 auto;
+    width: 90%;
+    @media (min-width: 900px) {
+        width: 100%;
+    }
 
-.password {
-    margin-top: 20px;
-    margin-left: 800px;
-}
+    .login-register {
+        margin-bottom: 32px;
 
-.button {
-    margin-top: 20px;
-    margin-left: 800px;
+        .router-link {
+            color: #e65b0b;
+        }
+    }
+
+    form {
+        padding: 0 10px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        @media(min-width: 900px) {
+            padding: 0 50px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #303030;
+            margin-bottom: 40px;
+            @media (min-width: 900px) {
+                font-size: 40px;
+            }
+        }
+
+        .inputs {
+            width: 100%;
+            max-width: 350px;
+
+            .input {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 8px;
+                
+                input {
+                    width: 100%;
+                    border: none;
+                    background-color: #f2f7f8;
+                    padding: 4px 4px 4px 30px;
+                    height: 50px;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        .angle {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            transform: rotateZ(3deg);
+            width: 60px;
+            right: -30px;
+            height: 101%;
+            @media(min-width: 900px) {
+                display: initial;
+            }
+        }
+    }
+
+    .background {
+        display: none;
+        flex: 2;
+        background-size: cover;
+        background-image: url("../assets/img/planebg2.jpg");
+        width: 100%;
+        height: 100%;
+        @media (min-width: 900px) {
+            display: initial;
+        }
+    }
 }
 
 </style>
