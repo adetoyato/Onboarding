@@ -11,7 +11,7 @@
                     <input type="password" placeholder="Password" v-model="password">
                 </div>
             <p class="login-register">
-                Don't have an account? Sign up now!
+                Don't have an account?
             <router-link class="router-link" :to="{ name: 'register'}">
                 Register
             </router-link>
@@ -39,7 +39,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .form-wrap {
     overflow: hidden;
     display: flex;

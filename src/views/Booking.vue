@@ -1,6 +1,5 @@
 <template>
     <div id="Booking">
-        <Header />
         <label for="country" id="country">
             Enter Country:
         </label>
@@ -21,10 +20,8 @@
 
 </template>
 <script>
-import Header from "../components/Header"
     export default {
         components: {
-            Header
         },
         data () {
             return{

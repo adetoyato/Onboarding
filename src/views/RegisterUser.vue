@@ -77,6 +77,7 @@
     }
 
     .login-register {
+        left: 10px;
         margin-bottom: 32px;
 
         .router-link {

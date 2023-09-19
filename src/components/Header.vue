@@ -2,12 +2,12 @@
     <header>
        <nav class="container">
             <div class="branding">
-                <router-link class="header" :to="{ name: 'Home' }">Lou Geh Travel</router-link>
+                <router-link class="header" :to="{ name: 'home' }">Lou Geh Travel</router-link>
             </div>
             <div class="nav-links">
                 <ul>
                     <router-link class="link" to="#"> Dashboard </router-link>
-                    <router-link class="link" to="#"> Booking </router-link>
+                    <router-link class="link" :to="{ name: 'booking' }"> Booking </router-link>
                     <router-link class="link" to="#"> Profile </router-link>
                 </ul>
             </div>

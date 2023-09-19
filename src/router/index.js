@@ -5,6 +5,7 @@ import Dashboard from '../views/Dashboard.vue'
 import RegisterUser from '../views/RegisterUser.vue'
 import Login from '../views/Login.vue'
 import Booking from '../views/Booking.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter);
 
@@ -12,27 +13,50 @@ const routes = [
         {
             path: '/Home',
             name: 'home',
-            component: Home
+            component: Home,
+            meta: {
+                title: "Home",
+            },
         },
         {
             path: '/dashboard',
             name: 'dashboard',
-            component: Dashboard
+            component: Dashboard,
+            meta: {
+                title: "Dashboard",
+            },
         },
         {
             path: '/register',
             name: 'register',
-            component: RegisterUser
+            component: RegisterUser,
+            meta: {
+                title: "Register",
+            },
         },
         {
             path: '/login',
             name: 'login',
-            component: Login
+            component: Login,
+            meta: {
+                title: "Login",
+            },
         },
         {
             path: '/booking',
             name: 'booking',
-            component: Booking
+            component: Booking,
+            meta: {
+                title: "Booking",
+            },
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: Profile,
+            meta: {
+                title: "Profile",
+            },
         }
 ]
 
