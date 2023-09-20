@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="form-wrap">
+            <router-link class="back" :to="{ name: 'home' }"> ← Back to Homepage </router-link>
         <form class="login">
             <h2> Login your account</h2>
             <div class="inputs">
@@ -50,6 +51,13 @@
     width: 90%;
     @media (min-width: 900px) {
         width: 100%;
+    }
+
+    .back {
+        color: #000;
+        font-size: 10;
+        padding-top: 10px;
+        padding-left: 10px;
     }
 
     .login-register {

@@ -1,8 +1,10 @@
 <template>
     <div>
-        <div class="form-wrap">
+        <div class="form-wrap"> 
+            <router-link class="back" :to="{ name: 'home' }"> ← Back to Homepage </router-link>
         <form class="register">
             <h2> Create an account now! </h2>
+            
             <div class="inputs">
                  <div class="input">
                     <input type="text" placeholder="First Name" v-model="firstName">
@@ -65,15 +67,25 @@
 
 <style lang="scss" scoped>
 .form-wrap {
+    position: relative;
     overflow: hidden;
     display: flex;
     height: 100vh;
+    right: 160px;
     justify-content: center;
     align-self: center;
     margin: 0 auto;
-    width: 90%;
-    @media (min-width: 900px) {
+    width: 100%;
+    z-index: 99;
+    @media (min-width: 1080px) {
         width: 100%;
+    }
+
+    .back {
+        position: relative;
+        left: 1420px;
+        z-index: 101;
+        color: #000;
     }
 
     .login-register {
@@ -141,6 +153,7 @@
             width: 60px;
             left: -30px;
             height: 101%;
+            z-index: 100;
             @media(min-width: 900px) {
                 display: initial;
             }
@@ -154,6 +167,7 @@
         background-image: url("../assets/img/travel2.jpg");
         width: 100%;
         height: 100%;
+        z-index: 99;
         order: 1;
         @media (min-width: 900px) {
             display: initial;

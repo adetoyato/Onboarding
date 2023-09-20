@@ -8,6 +8,7 @@
                 <ul>
                     <router-link class="link" to="#"> Dashboard </router-link>
                     <router-link class="link" :to="{ name: 'booking' }"> Booking </router-link>
+                    <router-link v-if="!user" class="link" :to="{ name: 'login' }"> Login </router-link>
                     <router-link class="link" to="#"> Profile </router-link>
                 </ul>
             </div>
@@ -27,6 +28,12 @@
     methods: {
         checkScreen() {
             this.windownWidth = window.innerWidth;
+        },
+
+        computed: {
+            user () {
+                return this.$store.state.user;
+            },
         }
     }
 }
@@ -38,13 +45,13 @@
             }
         }*/
     
-</script>
+</script> 
 <style lang="scss">
 header {
     background-color: #000000;
     color: #fff;
     padding: 0 25px;
-    font-family: Impact;
+    font-weight: bold;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
     z-index: 99;
 
