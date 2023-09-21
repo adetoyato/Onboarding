@@ -6,6 +6,8 @@ import RegisterUser from '../views/RegisterUser.vue'
 import Login from '../views/Login.vue'
 import Booking from '../views/Booking.vue'
 import Profile from '../views/Profile.vue'
+import Admin from '../views/Admin.vue'
+import AddBooking from '../views/AddBooking.vue'
 
 Vue.use(VueRouter);
 
@@ -57,7 +59,20 @@ const routes = [
             meta: {
                 title: "Profile",
             },
-        }
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: Admin,
+            meta: {
+                title: "Admin",
+            },
+        },
+        {
+            path: '/add',
+            name: 'add',
+            component: AddBooking,
+        },
 ]
 
 const router = new VueRouter({

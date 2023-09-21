@@ -31,6 +31,6 @@ export default new Vuex.Store({
             .then(({ data }) => {
                 commit('SET_USER_DATA', data)
             })
-        }
+        },
     }
 })
