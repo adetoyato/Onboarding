@@ -18,13 +18,9 @@
                                             <b-form-group label="Destination City" class="dc-1"></b-form-group>
                                             <b-form-input id="destinationCity" type="text" placeholder="Enter Destination City" required></b-form-input>
                                         </div>
-                                        <div class="form-group mb-3">
-                                            <b-form-group label="Date" class="dc-1"></b-form-group>
-                                            <b-form-input id="destinationCity" type="text" placeholder="Enter Date" required></b-form-input>
-                                        </div>
                                          <div class="form-group mb-3">
                                             <b-form-group label="Group" class="dc-1"></b-form-group>
-                                            <b-form-input id="group" type="text" placeholder="Enter Group" required></b-form-input>
+                                            <b-form-input id="group" type="text" placeholder="Enter Group Name" required></b-form-input>
                                         </div>
                                     </b-form>
                                 </b-col>
@@ -42,8 +38,10 @@
 export default {
 
 }
+
+
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

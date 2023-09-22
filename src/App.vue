@@ -25,7 +25,8 @@ export default {
     checkRoute() {
       if (
           this.$route.name === "login" || 
-          this.$route.name === "register"
+          this.$route.name === "register" ||
+          this.$route.name === "add"
       ) {
         this.navigation = true;
         return;

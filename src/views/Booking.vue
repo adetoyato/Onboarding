@@ -1,21 +1,24 @@
 <template>
     <div id="Booking">
-        <label for="country" id="country">
-            Enter Country:
-        </label>
-        <input type="text" v-model="country" name="country" id="value">
+        <div class="form-group mb-3">
+            <b-form-group label="Destination Country" class="dc-1"></b-form-group>
+            <b-form-input id="destCountry" type="text" placeholder="Choose Destination Country" required></b-form-input>
+        </div>
+        <div class="form-group mb-3">
+            <b-form-group label="Destination City" class="dc-1"></b-form-group>
+            <b-form-input id="destCity" type="text" placeholder="Choose Destination City" required></b-form-input>
+        </div>
+        <div>
+            <label for="depDate">Depart on:</label>
+            <b-form-datepicker id="depDate" placeholder="Choose Departure Date" locale="en"></b-form-datepicker>
+        </div>
+         <b-row>
+            <label for="depTime">Time of Departure: </label>
+            <b-col md="auto">
+            <b-time v-model="value" locale="en" @context="onContext"></b-time>
+        </b-col>
+        </b-row>
 
-        <label for="city" id="city">
-            Enter City:
-        </label>
-        <input type="text" v-model="city" name="city" value>
-    <b-form-datepicker id="datepicker" class="date" v-model="newDate"
-        :date-format-options="{
-            year: 'numeric',
-            month: 'short',
-            day: '2-digit',
-            }" disabled>
-    </b-form-datepicker>
     </div>
 
 </template>
@@ -25,21 +28,11 @@
         },
         data () {
             return{
-                newDate: new Date(),
                 city: '',
                 country: '',
             }
         },
         methods: {
-            login () {
-                this.$store.dispatch('login', {
-                    city: this.city,
-                    country: this.country
-                })
-                .then( () => {
-                    this.$router.push({ name: 'dashboard' })
-                })
-            }
         }
     }
 </script>

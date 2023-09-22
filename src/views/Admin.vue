@@ -1,6 +1,6 @@
 <template>
   <div class="booking">
-    <h1 class="pg-header"> Manage Booking </h1>
+    <h1 class="pg-header"> View Users </h1>
     <table class="table table-striped">
         <thead>
             <tr>

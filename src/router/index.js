@@ -7,7 +7,10 @@ import Login from '../views/Login.vue'
 import Booking from '../views/Booking.vue'
 import Profile from '../views/Profile.vue'
 import Admin from '../views/Admin.vue'
-import AddBooking from '../views/AddBooking.vue'
+import AddGroup from '../views/AddGroup.vue'
+import ViewUser from '../views/ViewUser.vue'
+import FlightDetails from '../views/FlightDetails.vue'
+
 
 Vue.use(VueRouter);
 
@@ -71,7 +74,17 @@ const routes = [
         {
             path: '/add',
             name: 'add',
-            component: AddBooking,
+            component: AddGroup,
+        },
+        {
+            path: '/user',
+            name: 'user',
+            component: ViewUser,
+        },
+        {
+            path: '/flight',
+            name: 'flight',
+            component: FlightDetails,
         },
 ]
 
