@@ -15,7 +15,9 @@
          <b-row>
             <label for="depTime">Time of Departure: </label>
             <b-col md="auto">
-            <b-time v-model="value" locale="en" @context="onContext"></b-time>
+            <b-time v-model="value" class="border rounded p-2" locale="en" @context="onContext"></b-time>
+            <b-button size="sm" variant="outline-danger" v-if="value" @click="clearTime"> Clear Time </b-button>
+            <b-button size="sm" variant="outline-primary" class="ml-auto" @click="setNow"> Set Time </b-button>
         </b-col>
         </b-row>
 
@@ -28,11 +30,19 @@
         },
         data () {
             return{
+                value: null,
                 city: '',
                 country: '',
             }
         },
         methods: {
+            setNow() {
+                const now = new Date ()
+                this.value = now.toTimeString().slice(0,8)
+            },
+            clearTime() {
+                this.value = ''
+            }
         }
     }
 </script>
