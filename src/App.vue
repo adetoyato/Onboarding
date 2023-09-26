@@ -25,8 +25,7 @@ export default {
     checkRoute() {
       if (
           this.$route.name === "login" || 
-          this.$route.name === "register" ||
-          this.$route.name === "add"
+          this.$route.name === "register"
       ) {
         this.navigation = true;
         return;
@@ -42,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,300&display=swap");
+/*@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,300&display=swap");*/
 
  *{
   margin: 0;

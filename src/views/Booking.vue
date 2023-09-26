@@ -1,5 +1,6 @@
 <template>
-    <div id="Booking">
+    <div class="booking">
+        <b-container id="container">
         <div class="form-group mb-3">
             <b-form-group label="Destination Country" class="dc-1"></b-form-group>
             <b-form-input id="destCountry" type="text" placeholder="Choose Destination Country" required></b-form-input>
@@ -12,7 +13,7 @@
             <label for="depDate">Depart on:</label>
             <b-form-datepicker id="depDate" placeholder="Choose Departure Date" locale="en"></b-form-datepicker>
         </div>
-         <b-row>
+        <b-row>
             <label for="depTime">Time of Departure: </label>
             <b-col md="auto">
             <b-time v-model="value" class="border rounded p-2" locale="en" @context="onContext"></b-time>
@@ -20,7 +21,8 @@
             <b-button size="sm" variant="outline-primary" class="ml-auto" @click="setNow"> Set Time </b-button>
         </b-col>
         </b-row>
-
+        <b-button>Book Travel</b-button>
+        </b-container>
     </div>
 
 </template>
@@ -46,20 +48,18 @@
         }
     }
 </script>
-<style scoped>
-.date {
-    margin-top: 300px;
-    margin-left: 800px;
-    width: 350px;
-}
+<style lang="scss" scoped>
+div {
+    align-self: center;
+    justify-content: center;
+    margin: 10px;
 
-#country {
-    margin-top: 250px;
-    margin-left: 500px;
-}
+    .container {
+        border-color: black;
+        border-width: 3px;
+        margin-top: 10px;
+    }
 
-#city {
-    margin-top: 250px;
-    margin-left: 250px;
+    
 }
 </style>

@@ -58,7 +58,7 @@
                 password: this.password
             })
             .then( () => {
-               this.$router.push({ name: 'dashboard' }) 
+            this.$router.push({ name: 'dashboard' }) 
             })
         }
     }
@@ -83,7 +83,7 @@
 
     .back {
         position: relative;
-        left: 1420px;
+        left: 1280px;
         z-index: 101;
         color: #000;
     }

@@ -1,45 +1,39 @@
 <template>
-  <div class="booking">
-    <h1 class="pg-header"> View Users </h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th> Destination </th>
-                <th> Date of Departure </th>
-                <th> Time of Departure </th>
-                <th> Group </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-  </div>
+    <div class="booking">
+        <b-form-group id="table" label="Travel Details" class="dc-1"></b-form-group>
+        <b-table striped hover :items="items" :fields="fields"></b-table>
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'bookings',
+    name: 'booking',
 
-    data () {
-        return {
-            bookings: []
+    data() {
+    return {
+        fields: [
+            {
+            key: 'last_name',
+            sortable: true
+            },
+            {
+            key: 'first_name',
+            sortable: true
+            },
+            {
+            key: 'age',
+            label: 'Age',
+            sortable: true,
+            },
+            {   
+            key: 'username',
+            label: 'Username',
+            sortable: true,
+            },
+            ]
         }
-    },
-    methods: {
-        fetchBookings(){
-            this.$stoe.get('')
-            .then(function(response){
-                console.log(response.body);
-                this.customers = JSON.parse(response.body);
-            });
-        }
-    },
-    created: function(){
-        this.fetchBookings();
     }
-}
+}   
 </script>
 
 <style lang="scss" scoped>

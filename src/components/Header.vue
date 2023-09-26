@@ -8,14 +8,14 @@
       </div>
       <div class="nav-links">
         <ul>
-          <router-link class="link" to="#"> Dashboard </router-link>
+          <router-link class="link" :to="{ name: 'dashboard' }"> Dashboard </router-link>
           <router-link class="link" :to="{ name: 'booking' }">
             Booking
           </router-link>
           <router-link v-if="!user" class="link" :to="{ name: 'login' }">
             Login
           </router-link>
-          <router-link class="link" to="#"> Profile </router-link>
+          <router-link class="link" :to="{ name: 'profile' }"> Profile </router-link>
         </ul>
       </div>
     </nav>

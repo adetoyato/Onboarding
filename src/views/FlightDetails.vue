@@ -30,6 +30,7 @@
                                             <b-dropdown-item>Kuala Lumpur</b-dropdown-item>
                                         </b-dropdown>
                                         </div>
+                                        <button> Submit </button>
                                     </b-form>
                                 </b-col>
                             </b-container>

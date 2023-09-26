@@ -10,6 +10,7 @@ import Admin from '../views/Admin.vue'
 import AddGroup from '../views/AddGroup.vue'
 import ViewUser from '../views/ViewUser.vue'
 import FlightDetails from '../views/FlightDetails.vue'
+import User from '../views/User.vue'
 
 
 Vue.use(VueRouter);
@@ -85,6 +86,11 @@ const routes = [
             path: '/flight',
             name: 'flight',
             component: FlightDetails,
+        },
+        {
+            path: '/user',
+            name: 'user',
+            component: User,
         },
 ]
 
