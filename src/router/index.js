@@ -11,6 +11,7 @@ import AddGroup from '../views/AddGroup.vue'
 import ViewUser from '../views/ViewUser.vue'
 import FlightDetails from '../views/FlightDetails.vue'
 import User from '../views/User.vue'
+import Footer from '../components/Footer.vue'
 
 
 Vue.use(VueRouter);
@@ -92,6 +93,11 @@ const routes = [
             name: 'user',
             component: User,
         },
+        {
+            path: '/footer',
+            name: 'footer',
+            component: Footer,
+        }
 ]
 
 const router = new VueRouter({

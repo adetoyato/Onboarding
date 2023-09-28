@@ -1,12 +1,10 @@
 <template>
-  <footer>
-    <div class="container">
-        <div class="left">
-            <div class="col-1">
-                <router-link class="header" :to="{ name: 'home' }"> Lou Geh Travel </router-link>
-                <label></label>
-            </div>
-        </div>
+  <footer class="text-center text-white" style="background-color: #000;">
+    <div class="container p-4">
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+      &copy; 2023 Copyright:
+    <router-link class="link text-white" :to="{ name: 'home' }">LGTravel.com</router-link>
     </div>
   </footer>
 </template>

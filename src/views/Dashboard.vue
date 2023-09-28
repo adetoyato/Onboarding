@@ -10,21 +10,15 @@
     <p class="text1">Last updated 3 mins ago</p>
   </div>
 <div>
-  <b-card-group columns>
-    <b-card
-      bg-variant="danger"
-      title="Past or Present"
-      :img-src="require('../assets/img/carousel4.jpg')"
-      img-alt="Image"
-      img-top
-    >
+  <b-card-group columns class="crdgrp">
+    <b-card class="card1" style="max-width: 32rem;" bg-variant="danger" title="Past or Present" :img-src="require('../assets/img/carousel4.jpg')" img-alt="Image" img-top>
       <b-card-text>
         Just let it be.
       </b-card-text>
       <b-button variant= "warning" id="btn"> Proceed </b-button>
     </b-card>
 
-    <b-card header="「 No Longer Human 」" bg-variant="dark">
+    <b-card class="card2" style="max-width: 35rem;" header="「 No Longer Human 」" bg-variant="dark">
       <blockquote class="blockquote mb-0">
         <p>“Whenever I was asked what I wanted my first impulse was to answer "Nothing." The thought went through my mind that it didn't make any difference, that nothing was going to make me happy.”</p>
         <footer class="blockquote-footer">
@@ -33,7 +27,7 @@
       </blockquote>
     </b-card>
 
-    <b-card bg-variant="dark" title="Tomorrow" :img-src="require('../assets/img/carousel 5.jpg')" img-alt="Image" img-top>
+    <b-card class="card3" style="max-width: 35rem;" bg-variant="dark" title="Tomorrow" :img-src="require('../assets/img/carousel 5.jpg')" img-alt="Image" img-top>
       <b-card-text>
         After all that's said and done, I wanted to share my tomorrows with him.
       </b-card-text>
@@ -41,7 +35,7 @@
       <b-card-text class="small text-muted">Last updated 3 mins ago</b-card-text>
     </b-card>
 
-    <b-card bg-variant="success" text-variant="white">
+    <b-card class="card4" style="max-width: 30rem;" bg-variant="success" text-variant="white">
       <blockquote class="card-blockquote">
         <p>Pray forgive the discourtesy of filling my hallowed chalice.</p>
         <footer>
@@ -50,7 +44,7 @@
       </blockquote>
     </b-card>
 
-    <b-card bg-variant="dark">
+    <b-card class="card5" style="max-width: 33rem;" bg-variant="dark">
       <b-card-title>The Honored One</b-card-title>
       <b-card-text>
         Along heaven and earth, I alone am the honored one.
@@ -58,9 +52,9 @@
       <b-card-text class="small text-muted">Last updated 3 mins ago</b-card-text>
     </b-card>
 
-    <b-card bg-variant="light" :img-src="require('../assets/img/carousel2.jpg')" img-alt="Image" overlay></b-card>
+    <b-card class="card6" bg-variant="light" :img-src="require('../assets/img/carousel2.jpg')" img-alt="Image" style="max-width: 32rem;" overlay></b-card>
 
-    <b-card bg-variant="warning" :img-src="require('../assets/img/carousel3.jpg')" img-alt="Image" img-top>
+    <b-card class="card7" bg-variant="warning" :img-src="require('../assets/img/carousel3.jpg')" style="max-width: 34rem;" img-alt="Image" img-top>
       <b-card-text>
         Smile spikey, you look better when you smile.
       </b-card-text>
@@ -71,13 +65,18 @@
     </b-card>
   </b-card-group>
 </div>
+<Footer/>
 </div>
 </template>
 
 
 
 <script>
+import Footer from "../components/Footer.vue"
 export default {
+    components: {
+      Footer,
+    },
     methods:  {
         prev() {
             this.$refs.myCarousel.prev()
@@ -114,6 +113,14 @@ div {
     padding-top: 100px;
   }
 
+  .crdgrp {
+    margin-top: 10px;
+    overflow: hidden;
+  @media (min-width: 900px) {
+      
+    }
+  }
+
   .card-title {
     font-family: impact;
     font-size: 30px;
@@ -130,6 +137,33 @@ div {
   .card-text1 {
     padding-top: 100px;
   }
+
+  /*.card1 {
+    margin-left: 40px;
+  }
+
+  .card2{
+    margin-right: 50px;
+  }
+
+  .card3 {
+    margin-top: 10px;
+  }
+
+  .card4 {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-left: 30px;
+  }
+
+  .card5 {
+    margin-right: 50px;
+  }
+
+  .card6 {
+    margin-left: 30px;
+  }*/
+
 }
 /*.background {
         display: none;

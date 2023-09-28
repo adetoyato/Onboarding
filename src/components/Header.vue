@@ -3,7 +3,7 @@
     <nav class="container">
       <div class="branding">
         <router-link class="header" :to="{ name: 'home' }"
-          >Lou Geh Travel</router-link
+          >LOU GEH TRAVEL</router-link
         >
       </div>
       <div class="nav-links">
@@ -53,6 +53,7 @@ export default {
 <style lang="scss">
 header {
   background-color: #000000;
+  font-weight: bold;
   color: #fff;
   padding: 0 25px;
   font-weight: bold;
