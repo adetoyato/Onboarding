@@ -6,6 +6,7 @@
         <h2>Login your account</h2>
         <div class="inputs">
           <div class="input">
+<<<<<<< HEAD
             <input
               required
               type="text"
@@ -22,6 +23,12 @@
               placeholder="Password"
               v-model="password"
             />
+=======
+            <input type="text" placeholder="Username" v-model="username" />
+          </div>
+          <div class="input">
+            <input type="password" placeholder="Password" v-model="password" />
+>>>>>>> fix/store-implementation
           </div>
           <p class="login-register">
             Don't have an account?
@@ -54,7 +61,11 @@ export default {
   },
   computed: {
     loggedIn() {
+<<<<<<< HEAD
       return this.$store.state.auth.status.loggedIn;
+=======
+      return this.$store.state.loggedIn;
+>>>>>>> fix/store-implementation
     },
   },
   methods: {
@@ -73,6 +84,7 @@ export default {
         this.state.password = true;
       }
 
+<<<<<<< HEAD
       if (this.username != null && this.password) {
         return true;
       } else {
@@ -101,6 +113,26 @@ export default {
       //     this.showAlert("Invalid Credentials", "danger");
       //   } else {
       //   }
+=======
+      return this.username != null && this.password;
+    },
+
+    async handleLogin(e) {
+      e.preventDefault();
+      const user = { username: this.username, password: this.password };
+      await this.$store.dispatch("login", user).then(
+        (res) => {
+          /**
+           * TODO:
+           * change route
+           */
+        },
+        (err) => {
+          //TODO: add show alert
+          //   this.showAlert("Invalid credentials!", "danger");
+        }
+      );
+>>>>>>> fix/store-implementation
     },
   },
 };
