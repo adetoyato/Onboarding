@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="form-wrap">
-            <router-link class="back" :to="{ name: 'home' }"> ← Back to Homepage </router-link>
+            <!-- <router-link class="back" :to="{ name: 'home' }"> ← Back to Homepage </router-link> -->
         <form class="login">
             <h2> Login your account</h2>
             <div class="inputs">
@@ -18,7 +18,7 @@
             </router-link>
             </p>
             </div>
-            <button>Login</button>
+            <b-button pill type="submit">Login</b-button>
             <div class="angle"></div>
         </form>
             <div class="background"></div>
@@ -28,17 +28,72 @@
 
 <script>
     export default {
-        name: "Login",
+        name: "login",
         components: {
         },
         data () {
             return{
-                username: null,
-                password: null,
-
+                username: '',
+                password: '',
+                state: {
+                    username: null,
+                    password: null
+                }
             }
         },
-    }
+        computed: {
+            loggedIn() {
+                return this.$store.state.auth.status.loggedIn;
+            },
+        },
+        methods: {
+            logout() {
+                this.$store.dispatch("logout")
+            },
+            validation() {
+                if (this.username == null || this.username < 1) {
+                    this.state.username = false;
+                }
+                else {
+                    this.state.username = true;
+                }
+                if (this.pasword == null || this.password < 1) {
+                    this.state.password = false;
+                }
+                else {
+                    this.state.password = true;
+                }
+
+                if (this.username != null && this.password) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            },
+            async handleLogin() {
+                if (!this.validation()) {
+                    this.showAlert("Invalid Credentials", "danger");
+                }
+                else {
+                    const user = { username: this.username, password: this.password };
+                    this.$store.dispatch("login", user).then(
+                        () => {
+                            if (user.username && user.password) {
+                                console.log(user.username, user.password);
+                            }
+                            else {
+                                this.showAlert("Tongari", "info")
+                            }
+                        },
+                        (error) => {
+                            console.log(error);
+                        }
+                    );
+                }
+            },
+        }
+    };
 </script>
 
 <style lang="scss" scoped>

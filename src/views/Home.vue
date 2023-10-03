@@ -22,8 +22,8 @@ export default {
             },
             message1: [
                 {
-                    title: "Places to go, things to see...",
-                    msgHTML: "What will you do next?",
+                    title: "Other places to see...",
+                    msgHTML: "Come, take a look!",
                     coverPhoto: "travel1",
                 }
             ]
@@ -33,6 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 h1 {
     text-align: center;
     margin: 300px;
@@ -41,6 +42,7 @@ h1 {
 
 #content {
     text-align: center;
+    justify-content: center;
     border: 15px white;
     margin: 20px;
 }

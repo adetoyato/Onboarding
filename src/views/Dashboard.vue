@@ -1,8 +1,8 @@
 <template>
-<div class="card bg-white text-white" style="max-width: 1920px;">
-  <img src="../assets/img/carousel1.jpg" class="card-img" alt="beach1" style="max-height:830px;"/>
-  <div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.3); max-height:830px;">
-    <h1 class="title">Weekend Getaway!</h1>
+<div class="card bg-white text-white" style="max-width: 1908px;">
+  <img src="../assets/img/carousel1.jpg" class="card-img" alt="beach1" style="max-height:900px; max-width:1908px;"/>
+  <div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.3); max-height:900px;">
+    <h1 class="title">Looking for some spice in your life?</h1>
     <p class="text">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. 
       <br>Soluta, labore velit, vel dolor obcaecati ratione fugit 
@@ -11,7 +11,7 @@
   </div>
 <div>
   <b-card-group columns class="crdgrp">
-    <b-card class="card1" style="max-width: 32rem;" bg-variant="danger" title="Past or Present" :img-src="require('../assets/img/carousel4.jpg')" img-alt="Image" img-top>
+    <b-card class="card1" style="max-width: 32rem;" bg-variant="info" title="Past or Present" :img-src="require('../assets/img/carousel4.jpg')" img-alt="Image" img-top>
       <b-card-text>
         Just let it be.
       </b-card-text>
@@ -56,7 +56,7 @@
 
     <b-card class="card7" bg-variant="warning" :img-src="require('../assets/img/carousel3.jpg')" style="max-width: 34rem;" img-alt="Image" img-top>
       <b-card-text>
-        Smile spikey, you look better when you smile.
+        If God won't save you, then I will.
       </b-card-text>
       <b-button variant= "danger" id="btn"> Read More </b-button>
       <template #footer>
@@ -89,11 +89,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+body {
+  overflow-x:hidden;
+}
 
 div {
   text-align: center;
   justify-content: center;
-  overflow: hidden;
+
+  .card {
+    margin: -5px;
+    top: -4px;
+    left: -.2px;
+    overflow-x: hidden;
+  }
 
   .btn {
     margin-bottom: 10px;
@@ -138,12 +147,13 @@ div {
     padding-top: 100px;
   }
 
-  /*.card1 {
-    margin-left: 40px;
+  .card1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .card2{
-    margin-right: 50px;
+    margin-top: 30px;
   }
 
   .card3 {
@@ -151,19 +161,19 @@ div {
   }
 
   .card4 {
-    margin-top: 5px;
+    margin-top: 15px;
     margin-bottom: 15px;
-    margin-left: 30px;
+
   }
 
   .card5 {
-    margin-right: 50px;
+    margin-bottom: 20px;
   }
 
   .card6 {
-    margin-left: 30px;
-  }*/
-
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
 }
 /*.background {
         display: none;

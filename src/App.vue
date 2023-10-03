@@ -11,7 +11,9 @@
 import Navigation from './components/Header';
 export default {
   name: "app",
-  components: { Navigation },
+  components: { 
+    Navigation,
+  },
   data () {
     return {
       navigation: null,
@@ -25,7 +27,8 @@ export default {
     checkRoute() {
       if (
           this.$route.name === "login" || 
-          this.$route.name === "register"
+          this.$route.name === "register" ||
+          this.$route.name === "home"
       ) {
         this.navigation = true;
         return;

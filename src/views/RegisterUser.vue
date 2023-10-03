@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="form-wrap"> 
-            <router-link class="back" :to="{ name: 'home' }"> ← Back to Homepage </router-link>
+            <!-- <router-link class="back" :to="{ name: 'home' }"> ← Back to Homepage </router-link> -->
         <form class="register">
             <h2> Create an account now! </h2>
             
@@ -46,7 +46,7 @@
             firstName: '',
             lastName: '',
             age: '',
-            email: '',
+            username: '',
             password: ''
         }
     },
@@ -54,7 +54,7 @@
         register() {
             this.$store.dispatch('register', {
                 name: this.name,
-                email: this.email,
+                username: this.username,
                 password: this.password
             })
             .then( () => {

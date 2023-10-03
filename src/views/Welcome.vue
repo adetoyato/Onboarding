@@ -6,12 +6,13 @@
                 <h2 v-else> {{post.title}} </h2>
                 <p v-if="post.welcomeScreen"> {{post.message}}</p>
                 <p class="content-preview" v-else> {{post.msgHTML}}</p>
-                <router-link class="link link-light" v-if="post.welcomeScreen" :to="{ name: 'login' }">
+                <b-button pill v-if="post.welcomeScreen" class="link" href="login" variant="light"> Login or Register </b-button>
+                <!--<router-link class="link link-light" v-if="post.welcomeScreen" :to="{ name: 'login' }">
                     Login/Register
-                </router-link>
-                <!-- <router-link class="link" v-else to='../views/Login.vue'>
-                    View Destinations
                 </router-link> -->
+                <b-button pill class="link2" v-else to='../views/Login.vue'>
+                    View Destinations
+                </b-button>
             </div>
         </div>
             <div class="welcome-photo">
@@ -35,6 +36,7 @@ export default {
 .welcome-wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     @media(min-width: 700px) {
         min-height: 650px;
@@ -84,7 +86,7 @@ export default {
 
             .content-preview {
                 font-size: 18px;
-                padding-left: 60px;
+                padding-left: 90px;
                 max-height: 24px;
                 width: 250px;
                 white-space: nowrap;
@@ -96,8 +98,9 @@ export default {
                 align-items: center;
                 font-family: helvetica;
                 margin-top: 20px;
+                margin-left: 80px;
                 padding-bottom: 4px;
-                padding-left: 105px;
+                //padding-left: 4px;
                 border-bottom: 1px solid transparent;
                 transition: .8s ease-in all;
 
@@ -108,6 +111,29 @@ export default {
             }
 
             .link-light {
+                &:hover {
+                    border-bottom-color: transparent;
+
+                }
+            }
+            .link2 {
+                display: inline-flex;
+                align-items: center;
+                font-family: helvetica;
+                margin-top: 20px;
+                margin-left: 90px;
+                padding-bottom: 4px;
+                //padding-left: 4px;
+                border-bottom: 1px solid transparent;
+                transition: .8s ease-in all;
+
+                &:hover {
+                    border-bottom-color: transparent;
+                    color: #e65b0b;
+                }
+            }
+
+            .link2-light {
                 &:hover {
                     border-bottom-color: transparent;
 

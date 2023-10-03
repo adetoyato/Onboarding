@@ -10,7 +10,6 @@ import Admin from '../views/Admin.vue'
 import AddGroup from '../views/AddGroup.vue'
 import ViewUser from '../views/ViewUser.vue'
 import FlightDetails from '../views/FlightDetails.vue'
-import User from '../views/User.vue'
 import Footer from '../components/Footer.vue'
 
 
@@ -18,7 +17,7 @@ Vue.use(VueRouter);
 
 const routes = [
         {
-            path: '/Home',
+            path: '/',
             name: 'home',
             component: Home,
             meta: {
@@ -89,11 +88,6 @@ const routes = [
             component: FlightDetails,
         },
         {
-            path: '/user',
-            name: 'user',
-            component: User,
-        },
-        {
             path: '/footer',
             name: 'footer',
             component: Footer,
@@ -101,9 +95,21 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    mode: "history",
-    base: process.env.BASE_URL,
-    routes,
-  });
+        mode: "history",
+        base: process.env.BASE_URL,
+        routes,
+    });
+
+router.beforeEach((to, from, next)=> {
+    const publicPages = ["/", "/login", "register"];
+    const authRequired = !publicPages.includes(to.path);
+    const loggedIn = localStorage.getItem("user");
+
+    if (authRequired && !loggedIn) {
+        return next ("/");
+    }
+
+    next();
+});
 
 export default router;

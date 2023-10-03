@@ -1,4 +1,9 @@
 <template>
+    <div class="card bg-black text-black" style="max-width: 1920px;">  
+    <img src="../assets/img/carousel6.jpg" class="card-img" alt="beach1" style="max-height:900px;"/>
+    <div class="card-img-overlay" style="background-color: rgba(255, 255, 255, 0.3); max-height:900px;">
+    <h1 class="title">Book Now!</h1>
+    <div>
     <div class="booking">
         <b-container id="container">
         <div class="form-group mb-3">
@@ -17,13 +22,17 @@
             <label for="depTime">Time of Departure: </label>
             <b-col md="auto">
             <b-time v-model="value" class="border rounded p-2" locale="en" @context="onContext"></b-time>
-            <b-button size="sm" variant="outline-danger" v-if="value" @click="clearTime"> Clear Time </b-button>
-            <b-button size="sm" variant="outline-primary" class="ml-auto" @click="setNow"> Set Time </b-button>
+            <b-button size="sm" variant="danger" v-if="value" @click="clearTime"> Clear Time </b-button>
+            <b-button size="sm" variant="primary" class="ml-auto" @click="setNow"> Set Time </b-button>
         </b-col>
         </b-row>
-        <b-button>Book Travel</b-button>
+        <b-button class="btn float-right">Book Travel</b-button>
         </b-container>
     </div>
+</div>
+</div>
+</div>
+
 
 </template>
 <script>
@@ -49,17 +58,26 @@
     }
 </script>
 <style lang="scss" scoped>
+
+body {
+    background-color: #000;
+}
 div {
     align-self: center;
     justify-content: center;
     margin: 10px;
+    
+    .title {
+        padding-top: 150px;
+        padding-left: 20px;
+    }
 
     .container {
         border-color: black;
         border-width: 3px;
         margin-top: 10px;
+        padding-top: 20px;
     }
-
     
 }
 </style>
