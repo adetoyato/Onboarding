@@ -6,7 +6,7 @@ import axios from 'axios'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://localhost:8000/login'
+axios.defaults.baseURL = 'http://localhost:8000/login';
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
