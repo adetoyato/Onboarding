@@ -33,13 +33,19 @@
                                                         </b-form-input>
                                                         </b-form-group>
                                                 <div class="col-xs-3">
-                                                <b-button class="mt-2 mr-2 position-relative" variant="success" @click="hideModal"> Create </b-button>
+                                                <b-button class="mt-2 mr-2 position-relative" variant="success" type="submit" @click="saveGroup"> Create </b-button>
                                                 <b-button class="mt-2 position-fixed" variant="danger" @click="toggleModal"> Cancel </b-button>
                                                 </div>
                                                     </form>
                                                 </b-modal>
                                                 <div>
-                                                <b-table id="table" class="mt-5 text-center" striped hover :items="items" :fields="fields"></b-table>
+                                                <b-table id="table" class="mt-5 text-center" striped hover :items="items" :fields="fields">
+                                                    <template #cell(delete)="row">
+                                                        <b-button class="btn btn-danger" title="Delete" id="delete" type="submit" @click="deleteUser(row)">
+                                                        <b-icon class="delete-btn" icon="trash-fill"></b-icon>
+                                                        </b-button>
+                                                    </template>
+                                                </b-table>
                                                 </div>
                                             </div>
                                     </b-form>
@@ -56,70 +62,140 @@
 </template>
 
 <script>
-
-import HeaderA from "../components/HeaderA.vue"
+import HeaderA from "../components/HeaderA.vue";
+import { mapState, mapGetters } from "vuex";
 export default {
-    components: {
-        HeaderA,
+  name: "table",
+  components: {
+    HeaderA,
+  },
+  computed: {
+    ...mapState(["userState"]),
+    ...mapGetters({ userList: "fetchUser" }),
+    rows() {
+      return this, userList.length;
     },
-    data() {
-        return {
-            name: '',
-            infoState: null,
-
-            fields: [
-                {
-                    key: 'Destination Country',
-                    sortable: true
-                },
-                {
-                    key: 'Destination City',
-                    sortable: true
-                },
-                {
-                    key: 'Group Name',
-                    sortable: true
-                }
-            ]
+  },
+  data() {
+    return {
+      user: {
+        country_id: null,
+        city_id: null,
+        group_id: null,
+        country_name: null,
+        city_name: null,
+        group_name: null,
+      },
+      item: {
+        country_id: null,
+        city_id: null,
+        group_id: null,
+        country_name: null,
+        city_name: null,
+        group_name: null,
+      },
+      state: {
+        country_name: null,
+        city_name: null,
+        group_name: null,
+      },
+      fields: [
+        {
+          key: "country_id",
+          label: "Destination Country",
+          sortable: true,
+        },
+        {
+          key: "city_id",
+          label: "Desitnation City",
+          sortable: true,
+        },
+        {
+          key: "group_id",
+          label: "Group",
+          sortable: false,
+          thStyle: {
+            width: "20px",
+          },
+        },
+        {
+          key: "delete",
+          label: "Delete",
+        },
+      ],
+      tableItems: [],
+    };
+  },
+  methods: {
+    async deleteUser(row) {
+      await this.$store.dispatch("deleteUser", row.item.user_id).then(
+        (res) => {
+          this.fetchUser();
+        },
+        (err) => {
+          console.log(err);
         }
+      );
     },
-    methods: {
 
-        showModal() {
-            this.$refs['modal'].show()
-        },
-        hideModal() {
-            this.$refs['modal'].hide()
-        },
-        toggleModal() {
-            this.$refs['modal'].hide()
-        },
-        checkFormValidity() {
-            const valid = tyhis.$refs.form.checkValidity()
-            this.infoState = valid
-            return valid
-        },
-        resetModal() {
-            this.info = ''
-            this.infoState = null
-        },
-        handleOk(bvModalEvent) {
-            bvModalEvent.preventDefault()
-            this.handleSubmit()
-        },
-        handleSubmit() {
-            if(!this.checkFormValidity()) {
-                return
-            }
-            this.submittedInfo.push(this.info)
-            this.$nextTick(() => {
-                this.$bvModal.hide('modal-prevent-closing')
-            })
-        }
+    async fetchUser() {
+      this.$store.dispatch("fetchUser").then((res) => {
+        console.log(res);
+        this.tableItems = res.data;
+      });
+    },
+  },
+
+  validation() {
+    if (this.user.fname === null || this.user.fname.length < 1) {
+      this.state.fname = false;
+    } else {
+      this.state.fname = true;
     }
-}
+    if (this.user.lname === null || this.user.lname.length < 1) {
+      this.state.lname = false;
+    } else {
+      this.state.lname = true;
+    }
+    if (this.user.age === null || this.user.age.length < 1) {
+      this.state.age = false;
+    } else {
+      this.state.age = true;
+    }
+    if (this.user.username === null || this.user.age.username < 1) {
+      this.state.username = false;
+    } else {
+      this.state.username = true;
+    }
+    if (this.user.password === null || this.user.age.password < 1) {
+      this.state.password = false;
+    } else {
+      this.state.password = true;
+    }
+    if (this.user.group === null || this.user.age.group < 1) {
+      this.state.group = false;
+    } else {
+      this.state.group = true;
+    }
 
+    if (
+      this.user.fname != null &&
+      this.user.lname != null &&
+      this.user.age != null &&
+      this.user.username != null &&
+      this.user.password != null &&
+      this.user.group != null
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  },
 
+  created() {
+    this.fetchUser();
+  },
+};
 </script>
 
 <style lang="scss" scoped>

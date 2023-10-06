@@ -14,6 +14,8 @@ export default new Vuex.Store({
     groupState: [],
     memberState: [],
     flightState: [],
+    userState: [],
+    destinationState: [],
     user: {},
     loggedIn: false,
   },
@@ -65,11 +67,10 @@ export default new Vuex.Store({
     // }
   },
   actions: {
-
     async fetchUser({ commit }) {
       const response = await axios.get(`${API_URL}/user`);
-      console.log(response.data);
       commit("SET_USER_LIST", response.data);
+      return response;
     },
 
     async fetchCity({ commit }) {
@@ -90,13 +91,19 @@ export default new Vuex.Store({
       commit("FETCH_GROUP_LIST", response.data);
     },
 
+    async fetchFlight({ commit }) {
+      const response = await axios.get(`${API_URL}/flight`);
+      console.log(response.data);
+      commit("FETCH_FLIGHT_LIST", response.data);
+    },
+
     async addCity({ commit }, data) {
       const response = await axios.post(`${API_URL}/cities`, {
         city_name: data.city_name,
         country_name: data.country_name,
       });
       console.log(response);
-      commit("ADD_CITY")
+      commit("ADD_CITY");
     },
 
     async addCountry({ commit }, data) {
@@ -105,7 +112,7 @@ export default new Vuex.Store({
         city_name: data.city_name,
       });
       console.log(response);
-      commit("ADD_COUNTRY")
+      commit("ADD_COUNTRY");
     },
 
     async addGroup({ commit }, data) {
@@ -115,21 +122,28 @@ export default new Vuex.Store({
         country_name: data.country_name,
       });
       console.log(response);
-      commit("ADD_GROUP")
+      commit("ADD_GROUP");
     },
 
+    async addFlight({ commit }, data) {
+      const response = await axios.post(`${API_URL}/flight`, {
+        airline_carrier: data.airline_carrier,
+        city_name: data.city_name,
+        country_name: data.country_name,
+      });
+      console.log(response);
+      commit("ADD_FLIGHT");
+    },
+
+
     async deleteUser({ commit }, user_id) {
-      const response = await axios.patch(
-        `${API_URL}/user/delete/${user_id}`
-      );
+      const response = await axios.patch(`${API_URL}/user/delete/${user_id}`);
       commit("DELETE_USER", response.data);
       console.log(response.data);
     },
 
     async deleteCity({ commit }, city_id) {
-      const response = await axios.patch(
-        `${API_URL}/cities/delete/${city_id}`
-      );
+      const response = await axios.patch(`${API_URL}/cities/delete/${city_id}`);
       commit("DELETE_USER", response.data);
       console.log(response.data);
     },
@@ -173,10 +187,10 @@ export default new Vuex.Store({
           if (response.data.token) {
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("user", JSON.stringify(response.data));
-            console.log("login",response.data.res[0].role_id)
+            console.log("login", response.data.res[0].role_id);
             let role_id = response.data.res[0].role_id;
-            if (role_id == 1 ) {
-              router.push("/add");
+            if (role_id == 1) {
+              router.push("/user");
             } else {
               router.push("/dashboard");
             }
@@ -191,7 +205,7 @@ export default new Vuex.Store({
       localStorage.removeItem("token");
       commit("logout");
     },
-    
+
     /*register({ commit }, credentials) {
         return axios
         .post('//localhost:8000/register', credentials)
@@ -255,9 +269,7 @@ export default new Vuex.Store({
     },
 
     DELETE_CITY(state, city_id) {
-      let index = state.cityState.findIndex(
-        (city) => city.city_id == city_id
-      );
+      let index = state.cityState.findIndex((city) => city.city_id == city_id);
       console.log(index);
       state.cityState.splice(index, 0);
     },
@@ -277,15 +289,12 @@ export default new Vuex.Store({
       console.log(index);
       state.groupState.splice(index, 0);
     },
-    
+
     DELETE_USER(state, user_id) {
-      let index = state.userState.findIndex(
-        (user) => user.user_id == user_id
-      );
+      let index = state.userState.findIndex((user) => user.user_id == user_id);
       console.log(index);
       state.userState.splice(index, 0);
     },
-    
   },
 
   plugins: [createPersistedState()],

@@ -9,30 +9,24 @@
                     <b-col class="py-2">
                         <b-col class="">
                             <b-container class="container-card rounded p-3">
-                                <h4 class="px-3"> Flight Details </h4>
+                                <h4 class="title"> Flight Details </h4>
                                 <b-col class="mt-3">
                                     <b-form @submit.prevent>
-                                        <div class="form-group mb-3">
-                                            <b-form-group label="Airline Carrier" class="dc-1"></b-form-group>
-                                            <b-form-input id="airlineCarrier" type="text" placeholder="Enter Airline Carrier" required></b-form-input>
+                                        <div class="form-group mb-3 w-50">
+                                            <b-form-group label="Airline Carrier" class="label"></b-form-group>
+                                            <b-form-input class="text" id="airlineCarrier" type="text" placeholder="Enter Airline Carrier" required></b-form-input>
                                         </div>
                                     <div>
-                                        <b-form-group id="country" label="Destination Country" class="dc-1"></b-form-group>
-                                        <b-dropdown id="dropdown-dropright" dropright="true" variant="info" text="Destination Country" class="m-1" required>
-                                            <b-dropdown-item>China</b-dropdown-item>
-                                            <b-dropdown-item>Philippines</b-dropdown-item>
-                                            <b-dropdown-item>Malaysia</b-dropdown-item>
+                                        <b-form-group id="country" label="Destination Country" class="label"></b-form-group>
+                                        <b-dropdown id="dropdown-dropright" block menu-class="w-100" variant="dark" text="Destination Country" class="dropdown" required>
                                         </b-dropdown>
                                     </div>
                                         <div class="form-group mb-3">
-                                            <b-form-group label="Destination City" class="dc-1"></b-form-group>
-                                            <b-dropdown id="dropdown-1" dropright="true" text="Destination City" variant="info" class="m-md-1" required>
-                                            <b-dropdown-item>Beijing</b-dropdown-item>
-                                            <b-dropdown-item>Manila</b-dropdown-item>
-                                            <b-dropdown-item>Kuala Lumpur</b-dropdown-item>
+                                            <b-form-group label="Destination City" class="label"></b-form-group>
+                                        <b-dropdown id="dropdown-1" text="Destination City" block menu-class="w-100" variant="dark" class="dropdown" required>
                                         </b-dropdown>
                                         </div>
-                                        <b-button class="button" pill variant="success"> Submit </b-button>
+                                        <b-button class="button" pill variant="success" type="submit" @click="saveFlight"> Submit </b-button>
                                     </b-form>
                                 </b-col>
                             </b-container>
@@ -47,21 +41,40 @@
 </template>
 
 <script>
-import HeaderA from "../components/HeaderA.vue"
+import HeaderA from "../components/HeaderA.vue";
 export default {
+    name: "flight",
     components: {
         HeaderA,
     }
-
 }
-
-
 </script>
 
+
 <style lang="scss" scoped>
+
+.title {
+    margin-left: 230px;
+    margin-bottom: 40px;
+}
+
+.label {
+    margin-left: 300px;
+}
+
+.text {
+    margin-left: 400px;
+    margin-bottom: 10px;
+}
+
+.dropdown {
+    margin-left: 400px;
+    margin-bottom: 10px;
+    width: 540px;
+}
 .button {
-    margin-left: 970px;
-    margin-top: 10px;
+    margin-left: 840px;
+    margin-top: 100px;
     width: 100px;
 }
 
