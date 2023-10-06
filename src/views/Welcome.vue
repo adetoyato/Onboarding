@@ -97,8 +97,9 @@ export default {
                 display: inline-flex;
                 align-items: center;
                 font-family: helvetica;
+                text-transform: none;
                 margin-top: 20px;
-                margin-left: 80px;
+                margin-left: 100px;
                 padding-bottom: 4px;
                 //padding-left: 4px;
                 border-bottom: 1px solid transparent;

@@ -6,29 +6,20 @@
         <h2>Login your account</h2>
         <div class="inputs">
           <div class="input">
-<<<<<<< HEAD
             <input
-              required
               type="text"
-              autocomplete="false"
+              required
               placeholder="Username"
               v-model="username"
             />
           </div>
           <div class="input">
             <input
-              required
               type="password"
-              autocomplete="false"
+              required
               placeholder="Password"
               v-model="password"
             />
-=======
-            <input type="text" placeholder="Username" v-model="username" />
-          </div>
-          <div class="input">
-            <input type="password" placeholder="Password" v-model="password" />
->>>>>>> fix/store-implementation
           </div>
           <p class="login-register">
             Don't have an account?
@@ -37,7 +28,7 @@
             </router-link>
           </p>
         </div>
-        <b-button pill type="submit">Login</b-button>
+        <b-button class="btn" pill type="submit">Login</b-button>
         <div class="angle"></div>
       </b-form>
       <div class="background"></div>
@@ -61,11 +52,7 @@ export default {
   },
   computed: {
     loggedIn() {
-<<<<<<< HEAD
-      return this.$store.state.auth.status.loggedIn;
-=======
       return this.$store.state.loggedIn;
->>>>>>> fix/store-implementation
     },
   },
   methods: {
@@ -83,56 +70,13 @@ export default {
       } else {
         this.state.password = true;
       }
-
-<<<<<<< HEAD
-      if (this.username != null && this.password) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    async handleLogin(e) {
-      e.preventDefault();
-
-      const user = { username: this.username, password: this.password };
-      this.$store.dispatch("login", user).then(
-        () => {
-          if (user.username && user.password) {
-            console.log(user.username, user.password);
-            // localStorage.role = "ADMIN";
-          } else {
-            this.showAlert("Tongari", "info");
-          }
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-
-      //   if (!this.validation()) {
-      //     this.showAlert("Invalid Credentials", "danger");
-      //   } else {
-      //   }
-=======
       return this.username != null && this.password;
     },
 
-    async handleLogin(e) {
+    handleLogin(e) {
       e.preventDefault();
       const user = { username: this.username, password: this.password };
-      await this.$store.dispatch("login", user).then(
-        (res) => {
-          /**
-           * TODO:
-           * change route
-           */
-        },
-        (err) => {
-          //TODO: add show alert
-          //   this.showAlert("Invalid credentials!", "danger");
-        }
-      );
->>>>>>> fix/store-implementation
+      this.$store.dispatch("login", user);
     },
   },
 };
@@ -211,6 +155,10 @@ export default {
           }
         }
       }
+    }
+
+    .btn {
+      width: 150px;
     }
 
     .angle {

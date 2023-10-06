@@ -1,6 +1,8 @@
 <template>
+
   <div class="card bg-white text-white" style="max-width: 1908px">
-    <img
+    <Header />
+  <img
       src="../assets/img/carousel1.jpg"
       class="card-img"
       alt="beach1"
@@ -8,7 +10,7 @@
     />
     <div
       class="card-img-overlay"
-      style="background-color: rgba(0, 0, 0, 0.3); max-height: 900px"
+      style="background-color: rgba(0, 0, 0, 0.3); max-height: 955px"
     >
       <h1 class="title">Looking for some spice in your life?</h1>
       <p class="text">
@@ -128,9 +130,11 @@
 </template>
 
 <script>
+import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 export default {
   components: {
+    Header,
     Footer,
   },
   methods: {

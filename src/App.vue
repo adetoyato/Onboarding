@@ -26,6 +26,10 @@ export default {
   methods: {
     checkRoute() {
       if (
+          this.$route.name === "flight" ||
+          this.$route.name === "user" ||
+          this.$route.name === "add" ||
+          this.$route.name === "dashboard" ||
           this.$route.name === "login" || 
           this.$route.name === "register" ||
           this.$route.name === "home"

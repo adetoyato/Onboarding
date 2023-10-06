@@ -1,23 +1,28 @@
 <template>
-    <div class="card bg-black text-black" style="max-width: 1920px;">  
+<div>
+    <div class="card bg-black text-white" style="max-width: 1920px;">
     <img src="../assets/img/carousel6.jpg" class="card-img" alt="beach1" style="max-height:900px;"/>
-    <div class="card-img-overlay" style="background-color: rgba(255, 255, 255, 0.3); max-height:900px;">
+    <div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.3); max-height:900px;">
     <h1 class="title">Book Now!</h1>
     <div>
     <div class="booking">
         <b-container id="container">
-        <div class="form-group mb-3">
-            <b-form-group label="Destination Country" class="dc-1"></b-form-group>
-            <b-form-input id="destCountry" type="text" placeholder="Choose Destination Country" required></b-form-input>
-        </div>
-        <div class="form-group mb-3">
-            <b-form-group label="Destination City" class="dc-1"></b-form-group>
-            <b-form-input id="destCity" type="text" placeholder="Choose Destination City" required></b-form-input>
-        </div>
-        <div>
-            <label for="depDate">Depart on:</label>
-            <b-form-datepicker id="depDate" placeholder="Choose Departure Date" locale="en"></b-form-datepicker>
-        </div>
+            <div>
+                <b-form-group id="country" label="Destination Country" class="dc-1"></b-form-group>
+                <b-dropdown id="dropdown-dropright" variant="light" block menu-class="w-100" text="Destination Country" class="m-1" required>
+                    <b-dropdown-item>China</b-dropdown-item>
+                    <b-dropdown-item>Philippines</b-dropdown-item>
+                    <b-dropdown-item>Malaysia</b-dropdown-item>
+                </b-dropdown>
+            </div>
+            <div class="form-group mb-3">
+                <b-form-group label="Destination City" class="dc-1"></b-form-group>
+                    <b-dropdown id="dropdown-1" text="Destination City" block menu-class="w-100" variant="light" class="m-md-1" required>
+                    <b-dropdown-item>Beijing</b-dropdown-item>
+                    <b-dropdown-item>Manila</b-dropdown-item>
+                    <b-dropdown-item>Kuala Lumpur</b-dropdown-item>
+                </b-dropdown>
+            </div>
         <b-row>
             <label for="depTime">Time of Departure: </label>
             <b-col md="auto">
@@ -32,12 +37,13 @@
 </div>
 </div>
 </div>
-
-
+</div>
 </template>
+
 <script>
     export default {
         components: {
+
         },
         data () {
             return{

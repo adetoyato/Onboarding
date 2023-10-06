@@ -4,12 +4,15 @@
     <b-navbar-brand href="dashboard">LOU GEH TRAVEL</b-navbar-brand>
     
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
+  
     <b-collapse id="nav-collapse" is-nav>
+  
+  <div>
       <b-navbar-nav>
         <b-nav-item href="dashboard"> Dashboard </b-nav-item>
           <b-nav-item href="booking"> Booking </b-nav-item>
       </b-navbar-nav>
+  </div>
 
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
@@ -22,7 +25,7 @@
             Profile
           </template>
           <b-dropdown-item href="profile"> See Profile </b-dropdown-item>
-          <b-dropdown-item href="#"> Log out </b-dropdown-item>
+          <b-dropdown-item @click="logout"> Log out </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -53,21 +56,23 @@
 <script>
 export default {
   name: "navigation",
-  components: {},
+  components: {
+
+  },
+  props: {
+    title: {
+      type: String
+    }
+  },
   data() {
     return {
-      windownWidth: null,
-    };
+      currentUser: JSON.parse(localStorage.getItem("user")),
+    }
   },
   methods: {
-    checkScreen() {
-      this.windownWidth = window.innerWidth;
-    },
-
-    computed: {
-      user() {
-        return this.$store.state.user;
-      },
+    async logout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/");
     },
   },
 };
@@ -79,7 +84,7 @@ export default {
             }
         }*/
 </script> 
-<style lang="scss" >
+<style lang="scss" scoped>
 
 div {
   nav {
