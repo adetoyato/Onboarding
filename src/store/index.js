@@ -102,8 +102,16 @@ export default new Vuex.Store({
 
     async fetchTicket({ commit }) {
       const response = await axios.get(`${API_URL}/ticket`);
-      console.log(response.data);
+      console.log("action",response.data);
       commit("FETCH_ALL_TICKET", response.data);
+      return response.data
+    },
+
+    async fetchMember({ commit }) {
+      const response = await axios.get(`${API_URL}/member`);
+      console.log("action",response.data);
+      commit("FETCH_ALL_MEMBER", response.data);
+      return response.data
     },
 
     async addCity({ commit }, data) {
@@ -180,7 +188,16 @@ export default new Vuex.Store({
       console.log(response.data);
     },
 
+    async deleteMember({ commit }, member_id) {
+      const response = await axios.patch(
+        `${API_URL}/member/delete/${member_id}`
+      );
+      commit("DELETE_MEMBER", response.data);
+      console.log(response.data);
+    },
+
     async deleteTicket({ commit }, ticket_id) {
+      console.log("ticket_id", ticket_id)
       const response = await axios.patch(
         `${API_URL}/ticket/delete/${ticket_id}`
       );
@@ -303,6 +320,15 @@ export default new Vuex.Store({
       state.flightState = flightState;
     },
 
+    FETCH_ALL_MEMBER(state, memberState) {
+      state.memberState = memberState;
+    },
+
+    FETCH_ALL_TICKET(state, ticketState) {
+      console.log("ticketState",ticketState)
+      state.ticketState = ticketState;
+    },
+
     DELETE_CITY(state, city_id) {
       let index = state.cityState.findIndex((city) => city.city_id == city_id);
       console.log(index);
@@ -329,6 +355,22 @@ export default new Vuex.Store({
       let index = state.userState.findIndex((user) => user.user_id == user_id);
       console.log(index);
       state.userState.splice(index, 0);
+    },
+
+    DELETE_TICKET(state, ticket_id) {
+      let index = state.ticketState.findIndex(
+        (ticket) => ticket.ticket_id == ticket_id
+      );
+      console.log(index);
+      state.ticketState.splice(index, 0);
+    },
+
+    DELETE_MEMBER(state, member_id) {
+      let index = state.memberState.findIndex(
+        (member) => member.member_id == member_id
+      );
+      console.log(index);
+      state.memberState.splice(index, 0);
     },
   },
 

@@ -6,7 +6,6 @@ import RegisterUser from '../views/RegisterUser.vue'
 import Login from '../views/Login.vue'
 import Booking from '../views/Booking.vue'
 import Profile from '../views/Profile.vue'
-import Admin from '../views/Admin.vue'
 import AddGroup from '../views/AddGroup.vue'
 import ViewUser from '../views/ViewUser.vue'
 import FlightDetails from '../views/FlightDetails.vue'
@@ -62,14 +61,6 @@ const routes = [
             component: Profile,
             meta: {
                 title: "Profile",
-            },
-        },
-        {
-            path: '/admin',
-            name: 'admin',
-            component: Admin,
-            meta: {
-                title: "Admin",
             },
         },
         {

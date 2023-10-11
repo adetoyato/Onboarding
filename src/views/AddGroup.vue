@@ -1,64 +1,56 @@
 <template>
-<div>
-<HeaderA />
-<b-conatiner fluid>
-    <b-row>
+  <div>
+    <HeaderA />
+    <b-container fluid>
+      <b-row>
         <b-col xl="10" lg="9" sm="9">
-            <b-container fluid class="pt-3">
-                <b-row class="my-3">
-                    <b-col class="py-2">
-                        <b-col class="">
-                            <b-container class="container-card rounded p-3">
-                                <h4 class="px-8"> Add Destination </h4>
-                                <b-col class="mt-7">
-                                    <b-form @submit.prevent>
-                                                <div>
-                                                    <b-button class="pill" pill v-b-modal.modal-prevent-closing variant="outline-danger"> Add </b-button>
-                                                </div>
-                                                <div>
-                                                <b-modal id="modal-prevent-closing" ref="modal" hide-footer title="Create Group" @show="resetModal" @hidden="resetModal" @ok="handleOk">
-                                                    <form ref="form" @submit.stop.prevent="handleSubmit">
-                                                        <b-form-group label="Destination Country" label-for="info-input" invalid-feedback="Please select Country." :state="infoState">
-                                                            <b-dropdown id="dropdown-dropright" dropright text="Select Country" variant="primary" class="m-2" required>
-                                                            <b-dropdown-item> Test </b-dropdown-item>
-                                                        </b-dropdown>
-                                                        </b-form-group>
-                                                        <b-form-group label="Destination City" label-for="info-input" invalid-feedback="Please select City." :state="infoState">
-                                                            <b-dropdown id="dropdown-dropright" dropright text="Select City" variant="primary" class="m-2 w-80" required>
-                                                            <b-dropdown-item> Test </b-dropdown-item>
-                                                        </b-dropdown>
-                                                        </b-form-group>
-                                                        <b-form-group label="Group Name" label-for="grpName1"  invalid-feedback="Please input Group Name." :state="infoState">
-                                                            <b-form-input id="grpName1" placeholder="Please Enter Group Name" v-model="name" :state="nameState" required>
-                                                        </b-form-input>
-                                                        </b-form-group>
-                                                <div class="col-xs-3">
-                                                <b-button class="mt-2 mr-2 position-relative" variant="success" type="submit" @click="saveGroup"> Create </b-button>
-                                                <b-button class="mt-2 position-fixed" variant="danger" @click="toggleModal"> Cancel </b-button>
-                                                </div>
-                                                </form>
-                                                </b-modal>
-                                                <div>
-                                                <b-table id="table" class="mt-5 text-center" striped hover :items="items" :fields="fields">
-                                                    <template #cell(delete)="row">
-                                                        <b-button class="btn btn-danger" title="Delete" id="delete" type="submit" @click="deleteUser(row)">
-                                                        <b-icon class="delete-btn" icon="trash-fill"></b-icon>
-                                                        </b-button>
-                                                    </template>
-                                                </b-table>
-                                                </div>
-                                            </div>
-                                    </b-form>
-                                </b-col>
-                            </b-container>
-                        </b-col>
+          <b-container fluid class="pt-3">
+            <b-row class="my-3">
+              <b-col class="py-2">
+                <b-col class="">
+                  <b-container class="container-card rounded p-3">
+                    <h4 class="title">View Destinations</h4>
+                    <b-col class="mt-7">
+                      <b-form @submit.prevent>
+                        <div>
+                          <div>
+                            <b-table
+                              id="table"
+                              class="mt-5 text-center"
+                              striped
+                              hover
+                              :items="tableItems"
+                              :fields="fields"
+                            >
+                              <template #cell(delete)="row">
+                                <b-button
+                                  class="btn btn-danger"
+                                  title="Delete"
+                                  id="delete"
+                                  type="submit"
+                                  @click="deleteGroup(row)"
+                                >
+                                  <b-icon
+                                    class="delete-btn"
+                                    icon="trash-fill"
+                                  ></b-icon>
+                                </b-button>
+                              </template>
+                            </b-table>
+                            <!-- <b-pagination pills v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="user-table"></b-pagination> -->
+                          </div>
+                        </div>
+                      </b-form>
                     </b-col>
-                </b-row>
-            </b-container>
+                  </b-container>
+                </b-col>
+              </b-col>
+            </b-row>
+          </b-container>
         </b-col>
-    </b-row>
-</b-conatiner>
-</div>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
@@ -70,48 +62,35 @@ export default {
     HeaderA,
   },
   computed: {
-    ...mapState(["flightState"]),
-    ...mapGetters({ userList: "fetchUser" }),
+    ...mapState(["groupState"]),
+    ...mapGetters({ groupList: "fetchGroup" }),
     rows() {
-      return this, userList.length;
+      return this, groupList.length;
     },
   },
   data() {
     return {
-      user: {
-        country_id: null,
-        city_id: null,
-        group_id: null,
-        country_name: null,
-        city_name: null,
-        group_name: null,
-      },
-      item: {
-        country_id: null,
-        city_id: null,
-        group_id: null,
-        country_name: null,
-        city_name: null,
-        group_name: null,
-      },
-      state: {
-        country_name: null,
-        city_name: null,
-        group_name: null,
+      group: {
+        city_id: "",
+        city_name: "",
+        country_id: "",
+        country_name: "",
+        group_id: "",
+        group_name: "",
       },
       fields: [
         {
-          key: "country_id",
+          key: "city_name",
+          label: "Destination City",
+          sortable: true,
+        },
+        {
+          key: "country_name",
           label: "Destination Country",
           sortable: true,
         },
         {
-          key: "city_id",
-          label: "Desitnation City",
-          sortable: true,
-        },
-        {
-          key: "group_id",
+          key: "group_name",
           label: "Group",
           sortable: false,
           thStyle: {
@@ -121,25 +100,26 @@ export default {
         {
           key: "delete",
           label: "Delete",
+          sortable: false,
         },
       ],
       tableItems: [],
     };
   },
   methods: {
-    async deleteUser(row) {
-      await this.$store.dispatch("deleteUser", row.item.user_id).then(
-        (res) => {
-          this.fetchUser();
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    },
+    // async deleteUser(row) {
+    //   await this.$store.dispatch("deleteUser", row.item.user_id).then(
+    //     (res) => {
+    //       this.fetchUser();
+    //     },
+    //     (err) => {
+    //       console.log(err);
+    //     }
+    //   );
+    // },
 
-    async fetchUser() {
-      this.$store.dispatch("fetchUser").then((res) => {
+    async fetchGroup() {
+      this.$store.dispatch("fetchGroup").then((res) => {
         console.log(res);
         this.tableItems = res.data;
       });
@@ -147,44 +127,26 @@ export default {
   },
 
   validation() {
-    if (this.user.fname === null || this.user.fname.length < 1) {
-      this.state.fname = false;
+    if (this.group.city_name === null || this.user.group.city_name< 1) {
+      this.state.city_name = false;
     } else {
-      this.state.fname = true;
+      this.state.city_name = true;
     }
-    if (this.user.lname === null || this.user.lname.length < 1) {
-      this.state.lname = false;
+    if (this.group.country_name === null || this.group.country_name.length < 1) {
+      this.state.country_name = false;
     } else {
-      this.state.lname = true;
+      this.state.country_name = true;
     }
-    if (this.user.age === null || this.user.age.length < 1) {
-      this.state.age = false;
+    if (this.group.group_name === null || this.group.group_name.length < 1) {
+      this.state.group_name = false;
     } else {
-      this.state.age = true;
-    }
-    if (this.user.username === null || this.user.age.username < 1) {
-      this.state.username = false;
-    } else {
-      this.state.username = true;
-    }
-    if (this.user.password === null || this.user.age.password < 1) {
-      this.state.password = false;
-    } else {
-      this.state.password = true;
-    }
-    if (this.user.group === null || this.user.age.group < 1) {
-      this.state.group = false;
-    } else {
-      this.state.group = true;
+      this.state.group_name = true;
     }
 
     if (
-      this.user.fname != null &&
-      this.user.lname != null &&
-      this.user.age != null &&
-      this.user.username != null &&
-      this.user.password != null &&
-      this.user.group != null
+      this.group.city_name != null &&
+      this.group.country_name != null &&
+      this.group.group_name != null
     ) {
       return true;
     } else {
@@ -193,23 +155,24 @@ export default {
   },
 
   created() {
-    this.fetchUser();
+    this.fetchGroup();
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.title {
+  margin-left: 100px;
+}
 
-    .table {
-    align-content: center;
-    margin-left: 150px;
-    }
+.table {
+  align-content: center;
+  margin-left: 150px;
+  overflow-x: hidden;
+}
 
-    .pill {
-    margin-left: 1200px;
-    width: 100px;
-    }
-
+.pill {
+  margin-left: 1200px;
+  width: 100px;
+}
 </style>
-
-

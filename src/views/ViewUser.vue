@@ -86,6 +86,7 @@ export default {
         age: null,
         username: null,
         password: null,
+        group: null,
       },
       state: {
         fname: null,
@@ -125,7 +126,7 @@ export default {
           sortable: false,
         },
         {
-          key: "group",
+          key: "group_name",
           label: "Group",
         },
         {
@@ -137,15 +138,6 @@ export default {
     };
   },
   methods: {
-
-    async saveBooking() {
-      if(!this.validation()) {
-        this.showAlert("Please choose a destination.", "warning");
-      } else {
-        this.$store.dispatch("editGroup", this.group);
-        this.showAlert("Success!", "success");
-      }
-    },
     async deleteUser(row) {
       await this.$store.dispatch("deleteUser", row.item.user_id).then(
         (res) => {

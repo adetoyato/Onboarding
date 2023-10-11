@@ -107,15 +107,17 @@
                 @click="bookTravel"
                 >Book Travel</b-button
               >
+                <b-alert
+      :show="dismissCountDown"
+      dismissible
+      variant="warning"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+      class="w-50 text-center"
+    >
+      {{ alertMessage}}
+    </b-alert>
             </b-container>
-            <div class="alert-container mt-3">
-              <b-alert dismissible class="alert" v-model="alert.showAlert" @dismissed="alert.showAlert = null" :variant="alert.variant">
-                <div class="alertboarder">
-                  <b-icon class="mr-2" :icon="alert.variant == 'success' ? 'check-lg' : 'exclamation-triangle-fill' " fill="black"></b-icon>
-                  {{ alert.message }}
-                </div>
-              </b-alert>
-            </div>
           </div>
         </div>
       </div>
@@ -147,6 +149,9 @@ export default {
   },
   data() {
     return {
+      alertMessage:'',
+      dismissSecs: 5,
+      dismissCountDown: 0,
       destination: {
         city_id: "",
         city_name: "",
@@ -155,12 +160,6 @@ export default {
         group_id: "",
         group_name: "",
         date_confirmed: "",
-      },
-      alert: {
-        dimissSecs: 0,
-        showAlert: 0,
-        variant: "",
-        message: "",
       },
       perPage: 4,
       currentPage: 1,
@@ -176,6 +175,12 @@ export default {
   },
 
   methods: {
+      countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+      showAlert() {
+        this.dismissCountDown = this.dismissSecs
+      },
     hideModal() {
       this.$refs["modal"].hide();
     },
@@ -222,20 +227,6 @@ export default {
       });
     },
 
-    showAlert(message, variant) {
-      this.alert = {
-        dismissSecs: 10,
-        showAlert: 5,
-        message,
-        variant
-      }
-    },
-
-    addTicket() {
-      this.$store.dispatch("addTicket", this.destination)
-    },
-
-
     async bookTravel() {
       const user = JSON.parse(localStorage.user);
 
@@ -257,13 +248,8 @@ export default {
               })
               .then(
                 (res) => {
-                  if (!this.validation()) {
+                  this.$router.push("/profile");
                   console.log(res);
-                  this.clear();
-                  this.$store.dispatch("addTicket", this.ticket);
-                  this.ShowAlert("Successfully Booked", "success");
-                  }
-                  
                 },
                 (err) => {
                   console.log(err);
@@ -271,7 +257,9 @@ export default {
               );
           },
           (err) => {
-            console.log(err);
+            console.log(err.response.data.error);
+            this.alertMessage = err.response.data.error
+            this.showAlert()
           }
         );
     },

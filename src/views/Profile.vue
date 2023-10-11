@@ -26,6 +26,7 @@
                             label-for="fName"
                           >
                             <b-form-input
+                              disabled
                               id="fName"
                               v-model="fName"
                               placeholder="First Name"
@@ -39,6 +40,7 @@
                             label-for="lName"
                           >
                             <b-form-input
+                              disabled
                               id="lName"
                               v-model="lName"
                               placeholder="Last Name"
@@ -52,6 +54,7 @@
                             label-for="age"
                           >
                             <b-form-input
+                              disabled
                               id="age"
                               v-model="age"
                               placeholder="Age"
@@ -70,7 +73,7 @@
                             style="background-color: rgba(0, 0, 0, 0.3)"
                             striped
                             hover
-                            :items="items"
+                            :items="ticketList"
                             :fields="fields"
                           >
                           <template #cell(delete)="row">
@@ -118,7 +121,7 @@ export default {
 
   computed: {
       ...mapState(["ticketState"]),
-      ...mapGetters({ ticketList: "fetchTicket" }),
+      ...mapGetters({ memberList: "fetchMember"}),
       rows() {
           return this.ticketList.length;
       },
@@ -126,6 +129,8 @@ export default {
 
   data() {
     return {
+      memberData:[],
+      ticketList:[],
       ticket: {
         ticket_id: null,
         city_id: null,
@@ -179,11 +184,11 @@ export default {
           sortable: false,
         },
       ],
-      item: [],
     };
   },
   methods: {
     async deleteTicket(row) {
+    this.deleteMember(row)
       await this.$store.dispatch("deleteTicket", row.item.ticket_id).then(
         (res) => {
           this.fetchTicket();
@@ -193,15 +198,44 @@ export default {
         }
       );
     },
+    async deleteMember() {
+      await  this.fetchMember();
+      await this.$store.dispatch("deleteMember", this.memberData[0].member_id).then(
+        (res) => {
+              this.fetchTicket();
 
-    async fetchTicket() {
-      this.$store.dispatch("fetchTicket").then((res) => {
-        console.log(res);
-        this.items = res.data;
+          },
+        (err) => {
+          console.log(err);
+        }
+      );
+    },
 
+    async fetchMember () {
+      await this.$store.dispatch("fetchMember").then((res) => {
+        let userData = JSON.parse(localStorage.getItem('user'))
+
+          console.log("res ", res);
         res.forEach((val) => {
           if (
-            val.user_id == this.ticket.user_id
+            val.user_id == userData.res[0].user_id
+          ) {
+            this.memberData.push(val);
+          }
+        })
+              this.fetchTicket();
+      });
+  
+    },
+
+    async fetchTicket() {
+      await this.$store.dispatch("fetchTicket").then((res) => {
+        this.items = res;
+        let userData = JSON.parse(localStorage.getItem('user'))
+      
+        res.forEach((val) => {
+          if (
+            val.user_id == userData.res[0].user_id
           ) {
             this.ticketList.push(val);
           }
