@@ -24,19 +24,19 @@
                                                         </b-dropdown>
                                                         </b-form-group>
                                                         <b-form-group label="Destination City" label-for="info-input" invalid-feedback="Please select City." :state="infoState">
-                                                            <b-dropdown id="dropdown-dropright" dropright text="Select City" variant="primary" class="m-2" required>
+                                                            <b-dropdown id="dropdown-dropright" dropright text="Select City" variant="primary" class="m-2 w-80" required>
                                                             <b-dropdown-item> Test </b-dropdown-item>
                                                         </b-dropdown>
                                                         </b-form-group>
-                                                        <b-form-group label="Group Name" label-for="grpName1" invalid-feedback="Please input Group Name." :state="infoState">
-                                                            <b-form-input id="grpName1" v-model="name" :state="nameState" required>
+                                                        <b-form-group label="Group Name" label-for="grpName1"  invalid-feedback="Please input Group Name." :state="infoState">
+                                                            <b-form-input id="grpName1" placeholder="Please Enter Group Name" v-model="name" :state="nameState" required>
                                                         </b-form-input>
                                                         </b-form-group>
                                                 <div class="col-xs-3">
                                                 <b-button class="mt-2 mr-2 position-relative" variant="success" type="submit" @click="saveGroup"> Create </b-button>
                                                 <b-button class="mt-2 position-fixed" variant="danger" @click="toggleModal"> Cancel </b-button>
                                                 </div>
-                                                    </form>
+                                                </form>
                                                 </b-modal>
                                                 <div>
                                                 <b-table id="table" class="mt-5 text-center" striped hover :items="items" :fields="fields">
@@ -70,7 +70,7 @@ export default {
     HeaderA,
   },
   computed: {
-    ...mapState(["userState"]),
+    ...mapState(["flightState"]),
     ...mapGetters({ userList: "fetchUser" }),
     rows() {
       return this, userList.length;

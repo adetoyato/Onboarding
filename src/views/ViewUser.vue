@@ -137,6 +137,15 @@ export default {
     };
   },
   methods: {
+
+    async saveBooking() {
+      if(!this.validation()) {
+        this.showAlert("Please choose a destination.", "warning");
+      } else {
+        this.$store.dispatch("editGroup", this.group);
+        this.showAlert("Success!", "success");
+      }
+    },
     async deleteUser(row) {
       await this.$store.dispatch("deleteUser", row.item.user_id).then(
         (res) => {

@@ -16,6 +16,7 @@ export default new Vuex.Store({
     flightState: [],
     userState: [],
     destinationState: [],
+    ticketState: [],
     user: {},
     loggedIn: false,
   },
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     },
     fetchUser: (state) => {
       return state.userState;
+    },
+    fetchTicket: (state) => {
+      return state.ticketState;
     },
   },
   mutations: {
@@ -87,14 +91,19 @@ export default new Vuex.Store({
 
     async fetchGroup({ commit }) {
       const response = await axios.get(`${API_URL}/group`);
-      console.log(response.data);
-      commit("FETCH_GROUP_LIST", response.data);
+      commit("FETCH_ALL_GROUP", response.data);
+      return response;
     },
 
     async fetchFlight({ commit }) {
       const response = await axios.get(`${API_URL}/flight`);
+      return response.data;
+    },
+
+    async fetchTicket({ commit }) {
+      const response = await axios.get(`${API_URL}/ticket`);
       console.log(response.data);
-      commit("FETCH_FLIGHT_LIST", response.data);
+      commit("FETCH_ALL_TICKET", response.data);
     },
 
     async addCity({ commit }, data) {
@@ -135,6 +144,21 @@ export default new Vuex.Store({
       commit("ADD_FLIGHT");
     },
 
+    async addTicket({ commit }, data) {
+      const response = await axios.post(`${API_URL}/ticket`, {
+        fname: data.fname,
+        lname: data.lname,
+        age: data.age,
+        group_name: data.group_name,
+        city_name: data.city_name,
+        country_name: data.country_name,
+        airline_carrier: data.airline_carrier,
+        date: data.date,
+        flight_number: data.flight_number,
+      });
+      console.log(response);
+      commit("ADD_FLIGHT");
+    },
 
     async deleteUser({ commit }, user_id) {
       const response = await axios.patch(`${API_URL}/user/delete/${user_id}`);
@@ -144,7 +168,7 @@ export default new Vuex.Store({
 
     async deleteCity({ commit }, city_id) {
       const response = await axios.patch(`${API_URL}/cities/delete/${city_id}`);
-      commit("DELETE_USER", response.data);
+      commit("DELETE_CITY", response.data);
       console.log(response.data);
     },
 
@@ -152,7 +176,15 @@ export default new Vuex.Store({
       const response = await axios.patch(
         `${API_URL}/country/delete/${country_id}`
       );
-      commit("DELETE_USER", response.data);
+      commit("DELETE_COUNTRY", response.data);
+      console.log(response.data);
+    },
+
+    async deleteTicket({ commit }, ticket_id) {
+      const response = await axios.patch(
+        `${API_URL}/ticket/delete/${ticket_id}`
+      );
+      commit("DELETE_TICKET", response.data);
       console.log(response.data);
     },
 
@@ -187,7 +219,6 @@ export default new Vuex.Store({
           if (response.data.token) {
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("user", JSON.stringify(response.data));
-            console.log("login", response.data.res[0].role_id);
             let role_id = response.data.res[0].role_id;
             if (role_id == 1) {
               router.push("/user");
@@ -256,16 +287,20 @@ export default new Vuex.Store({
       state.cityState = cityState;
     },
 
-    FETCH_ALL_COUNTRY(state, groupState) {
-      state.groupState = groupState;
+    FETCH_ALL_COUNTRY(state, countryState) {
+      state.countryState = countryState;
     },
 
-    FETCH_ALL_GROUP(state, userState) {
-      state.userState = userState;
+    FETCH_ALL_GROUP(state, groupState) {
+      state.groupState = groupState;
     },
 
     FETCH_ALL_USER(state, userState) {
       state.userState = userState;
+    },
+
+    FETCH_ALL_FLIGHT(state, flightState) {
+      state.flightState = flightState;
     },
 
     DELETE_CITY(state, city_id) {
