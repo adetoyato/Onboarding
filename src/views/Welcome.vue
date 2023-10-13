@@ -6,13 +6,18 @@
                 <h2 v-else> {{post.title}} </h2>
                 <p v-if="post.welcomeScreen"> {{post.message}}</p>
                 <p class="content-preview" v-else> {{post.msgHTML}}</p>
-                <b-button pill v-if="post.welcomeScreen" class="link" href="login" variant="light"> Login or Register </b-button>
-                <!--<router-link class="link link-light" v-if="post.welcomeScreen" :to="{ name: 'login' }">
-                    Login/Register
-                </router-link> -->
+                <b-button-group>
+                <b-button pill v-if="post.welcomeScreen" class="link d-flex justify-content-center" href="login" variant="light"> Login </b-button>
+                <b-button pill v-if="post.welcomeScreen" class="link1 d-flex align-content-center" href="register" variant="light"> Register </b-button>
                 <b-button pill class="link2" v-else to='../views/Login.vue'>
                     View Destinations
                 </b-button>
+                </b-button-group>
+                
+                <!--<router-link class="link link-light" v-if="post.welcomeScreen" :to="{ name: 'login' }">
+                    Login/Register
+                </router-link> -->
+                
             </div>
         </div>
             <div class="welcome-photo">
@@ -99,7 +104,8 @@ export default {
                 font-family: helvetica;
                 text-transform: none;
                 margin-top: 20px;
-                margin-left: 100px;
+                margin-left: 60px;
+                width: 80px;
                 padding-bottom: 4px;
                 //padding-left: 4px;
                 border-bottom: 1px solid transparent;
@@ -117,12 +123,37 @@ export default {
 
                 }
             }
+            .link1 {
+                display: inline-flex;
+                align-items: center;
+                font-family: helvetica;
+                text-transform: none;
+                margin-top: 20px;
+                margin-left: 20px;
+                padding-bottom: 4px;
+                //padding-left: 4px;
+                border-bottom: 1px solid transparent;
+                transition: .8s ease-in all;
+
+                &:hover {
+                    border-bottom-color: transparent;
+                    color: #e65b0b;
+                }
+            }
+
+            .link1-light {
+                &:hover {
+                    border-bottom-color: transparent;
+
+                    }
+                }
+
             .link2 {
                 display: inline-flex;
                 align-items: center;
                 font-family: helvetica;
                 margin-top: 20px;
-                margin-left: 90px;
+                margin-left: 70px;
                 padding-bottom: 4px;
                 //padding-left: 4px;
                 border-bottom: 1px solid transparent;

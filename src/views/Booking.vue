@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <div class="card bg-dark text-white" style="max-width: 1920px">
       <img src=../assets/img/carousel6.jpg class="card-img" alt="Stony Beach"/>
       <div
@@ -15,15 +16,32 @@
               style="background-color: rgba(255, 255, 255, 0.3)"
             >
               <div>
+                <b-col>
                 <b-button
                   class="pill"
-                  block
                   pill
                   v-b-modal.group-modal
-                  variant="warning"
+                  variant="light"
                 >
                   Choose Destination
                 </b-button>
+                
+                <b-form-datepicker
+                  class="date d-flex align-items-end flex-column w-25"
+                  placeholder= "Choose Destination Date"
+                  :date-format-options="{
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                  }"
+                  :min="new Date()"
+                  today-button
+                  reset-button
+                  close-button
+                  v-model="destination.date_confirmed"
+                >
+                </b-form-datepicker>
+                </b-col>
               </div>
               <div>
                 <b-modal
@@ -73,37 +91,27 @@
                     </b-button>
                   </div>
                 </b-modal>
+              
               </div>
-              <div class="mt-3">
+              <div class="mt-3 text-left">
                 Country: <strong>{{ this.destination.country_name }}</strong>
               </div>
-              <div class="mt-3">
+              <div class="mt-3 text-center">
                 City: <strong>{{ this.destination.city_name }}</strong>
               </div>
-              <div class="mt-3">
+              <div class="mt-3 text-right">
                 Group: <strong>{{ this.destination.group_name }}</strong>
               </div>
-              <div class="mt-3">
+              <div class="mt-3 d-flex justify-content-between">
                 Airline Carrier:
                 <strong>{{
                   listFlights.length > 0 ? listFlights[0].airline_carrier : ""
                 }}</strong>
               </div>
-              <div class="mb-5">
-                <b-form-datepicker
-                  :date-format-options="{
-                    year: 'numeric',
-                    month: 'short',
-                    day: '2-digit',
-                    weekday: 'short',
-                  }"
-                  v-model="destination.date_confirmed"
-                ></b-form-datepicker>
-              </div>
               <b-button
-                class="btn float-right"
+                class="mt-4 btn float-right"
                 type="submit"
-                variant="success"
+                variant="warning"
                 @click="bookTravel"
                 >Book Travel</b-button
               >
@@ -127,6 +135,7 @@
 </template>
 
 <script>
+import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import { mapState, mapGetters } from "vuex";
 import { API_URL } from "@/config/dev.env";
@@ -134,6 +143,7 @@ import axios from "axios";
 
 export default {
   components: {
+    Header,
     Footer,
   },
   computed: {
@@ -325,6 +335,10 @@ body {
 div {
   align-self: center;
   justify-content: center;
+
+  .date {
+    margin-left: 30px;
+  }
 
   .title {
     padding-top: 150px;

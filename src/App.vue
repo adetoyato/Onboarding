@@ -30,6 +30,8 @@ export default {
           this.$route.name === "user" ||
           this.$route.name === "add" ||
           this.$route.name === "dashboard" ||
+          this.$route.name === "booking" ||
+          this.$route.name === "profile" ||
           this.$route.name === "login" || 
           this.$route.name === "register" ||
           this.$route.name === "home"

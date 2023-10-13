@@ -21,6 +21,16 @@
               v-model="password"
             />
           </div>
+          <b-alert
+      :show="dismissCountDown"
+      dismissible
+      variant="warning"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+      class="w-50 text-center"
+    >
+      {{ alertMessage}}
+    </b-alert>
           <p class="login-register">
             Don't have an account?
             <router-link class="router-link" :to="{ name: 'register' }">
@@ -42,6 +52,9 @@ export default {
   components: {},
   data() {
     return {
+      alertMessage:'',
+      dismissSecs: 5,
+      dismissCountDown: 0,
       username: "",
       password: "",
       state: {
@@ -52,13 +65,20 @@ export default {
   },
   computed: {
     loggedIn() {
+      console.log(error.response.data.error);
+      this.alertMessage = error.response.data.error
+      this.showAlert()
       return this.$store.state.loggedIn;
+      
+      
     },
   },
+  
   methods: {
     logout() {
       this.$store.dispatch("logout");
     },
+    
     validation() {
       if (this.username == null || this.username < 1) {
         this.state.username = false;
@@ -69,7 +89,7 @@ export default {
         this.state.password = false;
       } else {
         this.state.password = true;
-      }
+      } 
       return this.username != null && this.password;
     },
 

@@ -9,9 +9,9 @@
   
   <div>
       <b-navbar-nav>
-          <b-nav-item href="user"> Users </b-nav-item>
-          <b-nav-item href="flight"> Flights </b-nav-item>
-          <b-nav-item href="add"> Destination </b-nav-item>
+          <b-nav-item exact-active-class="active" to="user"> Users </b-nav-item>
+          <b-nav-item exact-active-class="active" to="flight"> Flights </b-nav-item>
+          <b-nav-item exact-active-class="active" to="add"> Destination </b-nav-item>
       </b-navbar-nav>
   </div>
 

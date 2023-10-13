@@ -1,5 +1,6 @@
 <template>
 <div>
+  <Header />
   <div class="profile">
   <div class="card bg-dark text-white" style="max-width: 1920px;">
   <img src=../assets/img/carouseltest2.jpg class="card-img" alt="Stony Beach"/>
@@ -69,10 +70,9 @@
                         <div>
                           <b-table
                             id="table"
-                            class="mt-5 text-white"
-                            style="background-color: rgba(0, 0, 0, 0.3)"
+                            class="mt-5 text-white text-center"
+                            style="background-color: rgba(0, 0, 0, 0.7)"
                             striped
-                            hover
                             :items="ticketList"
                             :fields="fields"
                           >
@@ -110,12 +110,15 @@
 </template>
 
 <script>
+import Header from "../components/Header.vue"
 import Footer from "../components/Footer.vue"
 import { mapState, mapGetters } from "vuex";
+import moment from "moment";
 
 export default {
   name: "Profile",
   components: {
+    Header,
     Footer,
   },
 
@@ -171,6 +174,10 @@ export default {
         {
           key: "date",
           label: "Departure Date",
+          formatter: (value) => {
+            return moment(value).format("MMM DD, YYYY");
+          },
+          
           sortable: true,
         },
         {
@@ -187,6 +194,7 @@ export default {
     };
   },
   methods: {
+
     async deleteTicket(row) {
     this.deleteMember(row)
       await this.$store.dispatch("deleteTicket", row.item.ticket_id).then(

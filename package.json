@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --host localhost --port 8000",
-    "build": "vue-cli-service build",
-    "start": "vue-cli-service"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "@syncfusion/ej2-vue-calendars": "^22.2.12",
@@ -16,6 +15,7 @@
     "core-js": "^3.8.3",
     "css-loader": "^6.8.1",
     "vue": "^2.7.14",
+    "vue-moment": "^4.1.0",
     "vue-router": "^3.6.5",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "^4.1.0"

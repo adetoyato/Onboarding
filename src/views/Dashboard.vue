@@ -12,7 +12,7 @@
       class="card-img-overlay"
       style="background-color: rgba(0, 0, 0, 0.3); max-height: 955px"
     >
-      <h1 class="title">Looking for some spice in your life?</h1>
+      <h1 class="title">Need a weekend getaway?</h1>
       <p class="text">
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         <br />Soluta, labore velit, vel dolor obcaecati ratione fugit vero quod
@@ -33,12 +33,12 @@
           img-top
         >
           <b-card-text> Just let it be. </b-card-text>
-          <b-button variant="warning" id="btn"> Proceed </b-button>
+          <b-button variant="light" id="btn"> Proceed </b-button>
         </b-card>
 
         <b-card
           class="card2"
-          style="max-width: 35rem"
+          style="max-width: 35rem; background-color: rgba(0, 0, 0, 0.3)"
           header="「 No Longer Human 」"
           bg-variant="dark"
         >
@@ -67,7 +67,7 @@
             After all that's said and done, I wanted to share my tomorrows with
             him.
           </b-card-text>
-          <b-button variant="info" id="btn"> Check it out! </b-button>
+          <b-button variant="light" id="btn"> Check it out! </b-button>
           <b-card-text class="small text-muted"
             >Last updated 3 mins ago</b-card-text
           >
@@ -76,7 +76,7 @@
         <b-card
           class="card4"
           style="max-width: 30rem"
-          bg-variant="success"
+          bg-variant="info"
           text-variant="white"
         >
           <blockquote class="card-blockquote">
@@ -111,16 +111,16 @@
 
         <b-card
           class="card7"
-          bg-variant="warning"
+          bg-variant="info"
           :img-src="require('../assets/img/carousel3.jpg')"
           style="max-width: 34rem"
           img-alt="Image"
           img-top
         >
           <b-card-text> If God won't save you, then I will. </b-card-text>
-          <b-button variant="danger" id="btn"> Read More </b-button>
+          <b-button variant="light" id="btn"> Read More </b-button>
           <template #footer>
-            <small class="text-muted">Travel &copy; 2023</small>
+            <small class="text-black">Travel &copy; 2023</small>
           </template>
         </b-card>
       </b-card-group>
