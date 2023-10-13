@@ -10,7 +10,8 @@
         <h1 class="title">Book Now!</h1>
         <div>
           <div class="booking d-flex justify-content-center">
-            <b-container
+            <b-container 
+              sm="auto"
               id="container"
               class="rounded"
               style="background-color: rgba(255, 255, 255, 0.3)"
@@ -18,6 +19,7 @@
               <div>
                 <b-col>
                 <b-button
+                  id="btn"
                   class="pill"
                   pill
                   v-b-modal.group-modal
@@ -25,9 +27,9 @@
                 >
                   Choose Destination
                 </b-button>
-                
                 <b-form-datepicker
-                  class="date d-flex align-items-end flex-column w-25"
+                  name="date"
+                  class="float-right w-25"
                   placeholder= "Choose Destination Date"
                   :date-format-options="{
                     year: 'numeric',
@@ -85,28 +87,39 @@
                       class="mt-2 mr-2 position-relative"
                       variant="danger"
                       type="submit"
-                      @click="hideModal"
-                    >
+                      @click="hideModal">
                       Cancel
                     </b-button>
                   </div>
                 </b-modal>
               
               </div>
-              <div class="mt-3 text-left">
+              <div>
+                <div class="row">
+                  <div class="ml-4 col">
+              <div>
                 Country: <strong>{{ this.destination.country_name }}</strong>
               </div>
-              <div class="mt-3 text-center">
+                  </div>
+                  <div class="col">
+              <div>
                 City: <strong>{{ this.destination.city_name }}</strong>
               </div>
-              <div class="mt-3 text-right">
+                  </div>
+              <!-- <div class="col">
+              <div class="mt-2">
                 Group: <strong>{{ this.destination.group_name }}</strong>
               </div>
-              <div class="mt-3 d-flex justify-content-between">
-                Airline Carrier:
+                  </div>
+                  <div class="col">
+              <div class="mt-2">
+                Airline:
                 <strong>{{
                   listFlights.length > 0 ? listFlights[0].airline_carrier : ""
                 }}</strong>
+                </div>
+              </div> -->
+              </div>
               </div>
               <b-button
                 class="mt-4 btn float-right"
@@ -337,7 +350,9 @@ div {
   justify-content: center;
 
   .date {
-    margin-left: 30px;
+    left:20px;
+    width: 10px;
+    margin-right: 30px;
   }
 
   .title {
@@ -348,7 +363,9 @@ div {
   .container {
     border-color: black;
     border-width: 3px;
+    width: 1000px;
     margin-top: 30px;
+    padding-right: 10px;
     padding-top: 20px;
     padding-bottom: 15px;
   }
