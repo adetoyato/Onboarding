@@ -18,7 +18,8 @@
                               id="table"
                               class="mt-5 text-center"
                               striped
-                              hover
+                              :per-page="perPage"
+                              :current-page="currentPage"
                               :items="tableItems"
                               :fields="fields"
                             >
@@ -37,7 +38,15 @@
                                 </b-button>
                               </template>
                             </b-table>
-                            <!-- <b-pagination pills v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="user-table"></b-pagination> -->
+                            <b-pagination
+                              id="pagination"
+                              align="center"
+                              pills
+                              v-model="currentPage"
+                              :total-rows="rows"
+                              :per-page="perPage"
+                              aria-controls="tableItems"
+                            ></b-pagination>
                           </div>
                         </div>
                       </b-form>
@@ -65,37 +74,22 @@ export default {
     ...mapState(["userState"]),
     ...mapGetters({ userList: "fetchUser" }),
     rows() {
-      return this, userList.length;
+      return this.userList.length;
     },
   },
   data() {
     return {
       user: {
-        user_id: null,
-        fname: null,
-        lname: null,
-        age: null,
-        username: null,
-        password: null,
-        group: null,
+        user_id: '',
+        fname: '',
+        lname: '',
+        age: '',
+        username: '',
+        password: '',
+        group: '',
       },
-      item: {
-        user_id: null,
-        fname: null,
-        lname: null,
-        age: null,
-        username: null,
-        password: null,
-        group: null,
-      },
-      state: {
-        fname: null,
-        lname: null,
-        age: null,
-        username: null,
-        password: null,
-        group: null,
-      },
+      perPage: 6,
+      currentPage: 1,
       fields: [
         {
           key: "fname",
@@ -218,6 +212,10 @@ export default {
   align-content: center;
   margin-left: 150px;
   overflow-x: hidden;
+}
+
+.pagination {
+  margin-left: 300px;
 }
 
 .pill {

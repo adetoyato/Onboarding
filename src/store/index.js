@@ -78,15 +78,17 @@ export default new Vuex.Store({
     },
 
     async fetchCity({ commit }) {
-      const response = await axios.get(`${API_URL}/city`);
+      const response = await axios.get(`${API_URL}/cities`);
       console.log(response.data);
-      commit("FETCH_CITY_LIST", response.data);
+      commit("FETCH_ALL_CITY", response.data);
+      return response;
     },
 
     async fetchCountry({ commit }) {
       const response = await axios.get(`${API_URL}/country`);
       console.log(response.data);
-      commit("FETCH_COUNTRY_LIST", response.data);
+      commit("FETCH_ALL_COUNTRY", response.data);
+      return response;
     },
 
     async fetchGroup({ commit }) {
@@ -117,19 +119,18 @@ export default new Vuex.Store({
     async addCity({ commit }, data) {
       const response = await axios.post(`${API_URL}/cities`, {
         city_name: data.city_name,
-        country_name: data.country_name,
+        country_name: data.country_name
       });
       console.log(response);
       commit("ADD_CITY");
     },
 
     async addCountry({ commit }, data) {
-      const response = await axios.post(`${API_URL}/countries`, {
+      const response = await axios.post(`${API_URL}/country`, {
         country_name: data.country_name,
-        city_name: data.city_name,
       });
       console.log(response);
-      commit("ADD_COUNTRY");
+      commit("ADD_COUNTRY", response.data);
     },
 
     async addGroup({ commit }, data) {

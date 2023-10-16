@@ -8,7 +8,7 @@ import Booking from '../views/Booking.vue'
 import Profile from '../views/Profile.vue'
 import AddGroup from '../views/AddGroup.vue'
 import ViewUser from '../views/ViewUser.vue'
-import FlightDetails from '../views/FlightDetails.vue'
+import Destinations from '../views/Destinations.vue'
 import Footer from '../components/Footer.vue'
 
 
@@ -76,7 +76,7 @@ const routes = [
         {
             path: '/flight',
             name: 'flight',
-            component: FlightDetails,
+            component: Destinations,
         },
         {
             path: '/footer',
