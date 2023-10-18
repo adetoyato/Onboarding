@@ -2,12 +2,12 @@
   <div>
     <Header />
     <div class="card bg-dark text-white" style="max-width: 1920px">
-      <img src=../assets/img/carousel6.jpg class="card-img" alt="Stony Beach"/>
+      <img src=../assets/img/carousel9.jpg class="card-img" alt="Stony Beach"/>
       <div
         class="card-img-overlay"
         style="background-color: rgba(0, 0, 0, 0.3)"
       >
-        <h1 class="title">Book Now!</h1>
+        <h2 class="title">Book your flight here:</h2>
         <div>
           <div class="booking d-flex justify-content-center">
             <b-container 
@@ -16,43 +16,42 @@
               class="rounded"
               style="background-color: rgba(255, 255, 255, 0.3)"
             >
+            <b-form-row>
               <div>
                 <b-col>
                 <b-button
-                  id="btn"
+                  id="chooseBtn"
                   class="pill"
-                  pill
                   v-b-modal.group-modal
                   variant="light"
                 >
                   Choose Destination
                 </b-button>
-                <b-form-datepicker
-                  name="date"
-                  class="float-right w-25"
-                  placeholder= "Choose Destination Date"
-                  :date-format-options="{
-                    year: 'numeric',
-                    month: 'numeric',
-                    day: 'numeric',
-                  }"
-                  :min="new Date()"
-                  today-button
-                  reset-button
-                  close-button
-                  v-model="destination.date_confirmed"
-                >
-                </b-form-datepicker>
                 </b-col>
               </div>
+              <b-col>
+                <div>
+                <div class="row">
+                  <div class="ml-4 col">
+              <div class="select">
+                Country: <strong>{{ this.destination.country_name }}</strong>
+              </div>
+              </div>
+              <div class="select">
+                City: <strong>{{ this.destination.city_name }}</strong>
+              </div>
+              </div>
+              </div>
+              </b-col>
               <div>
                 <b-modal
+                  centered
                   id="group-modal"
                   ref="modal"
                   hide-footer
                   title="Choose Destination"
                 >
-                  <b-row class="d-flex justify-content-center">
+                  <b-row class="text-center">
                     <b-table
                       hover
                       :items="listGroup"
@@ -92,42 +91,29 @@
                     </b-button>
                   </div>
                 </b-modal>
+              <b-form-datepicker
+                  name="date"
+                  placeholder= "Choose Destination Date"
+                  :date-format-options="{
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                  }"
+                  :min="new Date()"
+                  today-button
+                  reset-button
+                  close-button
+                  v-model="destination.date_confirmed"
+                >
+                </b-form-datepicker>
+              </div>
               
-              </div>
-              <div>
-                <div class="row">
-                  <div class="ml-4 col">
-              <div>
-                Country: <strong>{{ this.destination.country_name }}</strong>
-              </div>
-                  </div>
-                  <div class="col">
-              <div>
-                City: <strong>{{ this.destination.city_name }}</strong>
-              </div>
-                  </div>
-              <!-- <div class="col">
-              <div class="mt-2">
-                Group: <strong>{{ this.destination.group_name }}</strong>
-              </div>
-                  </div>
-                  <div class="col">
-              <div class="mt-2">
-                Airline:
-                <strong>{{
-                  listFlights.length > 0 ? listFlights[0].airline_carrier : ""
-                }}</strong>
-                </div>
-              </div> -->
-              </div>
-              </div>
-              <b-button
-                class="mt-4 btn float-right"
+              <b-col>
+                <b-button
+                class="bookBtn float-right"
                 type="submit"
                 variant="warning"
-                @click="bookTravel"
-                >Book Travel</b-button
-              >
+                @click="bookTravel">Book Travel</b-button></b-col>
                 <b-alert
       :show="dismissCountDown"
       dismissible
@@ -138,6 +124,7 @@
     >
       {{ alertMessage}}
     </b-alert>
+    </b-form-row>
             </b-container>
           </div>
         </div>
@@ -172,6 +159,7 @@ export default {
   },
   data() {
     return {
+      boxTwo: '',
       alertMessage:'',
       dismissSecs: 5,
       dismissCountDown: 0,
@@ -184,7 +172,7 @@ export default {
         group_name: "",
         date_confirmed: "",
       },
-      perPage: 4,
+      perPage: 3,
       currentPage: 1,
       destinationFields: [
         { key: "country_name", label: "Country", sortable: true },
@@ -281,10 +269,20 @@ export default {
           },
           (err) => {
             console.log(err.response.data.error);
-            this.alertMessage = err.response.data.error
-            this.showAlert()
-          }
-        );
+            this.boxTwo = ''
+            this.$bvModal.msgBoxOk('You have already booked a flight!',{
+            title: 'Error',
+            size: 'sm',
+            buttonSize: 'sm',
+            okVariant: 'danger',
+            headerClass: 'p-2 border-bottom-0',
+            footerClass: 'p-2 border-top-0',
+            centered: true
+        })
+        .then(value => {
+            this.boxTwo = value
+        })
+      })
     },
   },
 
@@ -349,23 +347,21 @@ div {
   align-self: center;
   justify-content: center;
 
-  .date {
-    left:20px;
-    width: 10px;
-    margin-right: 30px;
+  .title {
+    padding-top: 500px;
+    padding-left: 390px;
   }
 
-  .title {
-    padding-top: 150px;
-    padding-left: 300px;
+  .pill {
+    width: 230px;
   }
 
   .container {
     border-color: black;
     border-width: 3px;
-    width: 1000px;
+    width: 1100px;
     margin-top: 30px;
-    padding-right: 10px;
+    padding-right: 20px;
     padding-top: 20px;
     padding-bottom: 15px;
   }

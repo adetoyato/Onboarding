@@ -1,7 +1,7 @@
 <template>
 <div>
   <b-navbar id="nav" toggleable="lg" type="dark" variant="dark">
-    <b-navbar-brand href="dashboard">LOU GEH TRAVEL</b-navbar-brand>
+    <b-navbar-brand>LOU GEH TRAVEL</b-navbar-brand>
     
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
   
@@ -10,8 +10,8 @@
   <div>
       <b-navbar-nav>
           <b-nav-item exact-active-class="active" to="user"> Users </b-nav-item>
-          <b-nav-item exact-active-class="active" to="flight"> Flights </b-nav-item>
-          <b-nav-item exact-active-class="active" to="add"> Destination </b-nav-item>
+          <b-nav-item exact-active-class="active" to="flight"> Destination </b-nav-item>
+          <b-nav-item exact-active-class="active" to="add"> Flights </b-nav-item>
       </b-navbar-nav>
   </div>
 

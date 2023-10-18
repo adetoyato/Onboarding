@@ -211,7 +211,6 @@ export default {
       await this.$store.dispatch("deleteMember", this.memberData[0].member_id).then(
         (res) => {
               this.fetchTicket();
-
           },
         (err) => {
           console.log(err);
@@ -222,7 +221,6 @@ export default {
     async fetchMember () {
       await this.$store.dispatch("fetchMember").then((res) => {
         let userData = JSON.parse(localStorage.getItem('user'))
-
           console.log("res ", res);
         res.forEach((val) => {
           if (

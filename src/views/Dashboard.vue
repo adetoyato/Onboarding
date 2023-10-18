@@ -14,12 +14,10 @@
     >
       <h1 class="title">Need a weekend getaway?</h1>
       <p class="text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        <br />Soluta, labore velit, vel dolor obcaecati ratione fugit vero quod
-        magnam. <br />Consectetur, repudiandae?
+        Come and view where you could plan the perfect vacation!
       </p>
 
-      <p class="text1">Last updated 3 mins ago</p>
+      <!-- <p class="text1">Last updated 3 mins ago</p> -->
     </div>
     <div>
       <b-card-group columns class="crdgrp">

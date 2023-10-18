@@ -206,6 +206,15 @@ export default new Vuex.Store({
       console.log(response.data);
     },
 
+    async deleteGroup({ commit }, group_id) {
+      console.log("group_id", group_id)
+      const response = await axios.patch(
+        `${API_URL}/group/delete/${group_id}`
+      );
+      commit("DELETE_GROUP", response.data);
+      console.log(response.data);
+    },
+
     //Login
     //city
     // async fetchCity({ commit }) {

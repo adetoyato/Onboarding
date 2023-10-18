@@ -1,7 +1,7 @@
 <template>
 <div>
   <b-navbar id="nav" toggleable="lg" type="dark" variant="dark">
-    <b-navbar-brand href="dashboard">LOU GEH TRAVEL</b-navbar-brand>
+    <b-navbar-brand>LOU GEH TRAVEL</b-navbar-brand>
     
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
   
