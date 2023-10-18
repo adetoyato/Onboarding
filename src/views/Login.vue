@@ -52,7 +52,7 @@ export default {
   components: {},
   data() {
     return {
-      alertMessage:'',
+      alertMessage:"",
       dismissSecs: 5,
       dismissCountDown: 0,
       username: "",
@@ -65,9 +65,6 @@ export default {
   },
   computed: {
     loggedIn() {
-      console.log(error.response.data.error);
-      this.alertMessage = error.response.data.error
-      this.showAlert()
       return this.$store.state.loggedIn;
       
       
@@ -75,6 +72,14 @@ export default {
   },
   
   methods: {
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
+    showAlert(variant) {
+      this.variant = variant;
+      this.dismissCountDown = this.dismissSecs;
+    },
+
     logout() {
       this.$store.dispatch("logout");
     },

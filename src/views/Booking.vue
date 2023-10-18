@@ -5,9 +5,13 @@
       <img src=../assets/img/carousel9.jpg class="card-img" alt="Stony Beach"/>
       <div
         class="card-img-overlay"
-        style="background-color: rgba(0, 0, 0, 0.3)"
+        style="background-color: rgba(0, 0, 0, 0.4)"
       >
-        <h2 class="title">Book your flight here:</h2>
+      <h1 class="title1">Japan</h1>
+      <p class="text">
+        「 The land of the rising sun. 」
+      </p>
+        <h4 class="book">Book your flight here:</h4>
         <div>
           <div class="booking d-flex justify-content-center">
             <b-container 
@@ -29,20 +33,6 @@
                 </b-button>
                 </b-col>
               </div>
-              <b-col>
-                <div>
-                <div class="row">
-                  <div class="ml-4 col">
-              <div class="select">
-                Country: <strong>{{ this.destination.country_name }}</strong>
-              </div>
-              </div>
-              <div class="select">
-                City: <strong>{{ this.destination.city_name }}</strong>
-              </div>
-              </div>
-              </div>
-              </b-col>
               <div>
                 <b-modal
                   centered
@@ -51,7 +41,7 @@
                   hide-footer
                   title="Choose Destination"
                 >
-                  <b-row class="text-center">
+                  <b-row class="d-flex justify-content-center">
                     <b-table
                       hover
                       :items="listGroup"
@@ -107,14 +97,26 @@
                 >
                 </b-form-datepicker>
               </div>
-              
+              <b-col><div>
+                <div class="row">
+                  <div class="ml-4 col">
+              <div class="select">
+                Country: <strong>{{ this.destination.country_name }}</strong>
+              </div>
+              </div>
+              <div class="select">
+                City: <strong>{{ this.destination.city_name }}</strong>
+              </div>
+              </div>
+              </div>
+              </b-col>
               <b-col>
                 <b-button
                 class="bookBtn float-right"
                 type="submit"
                 variant="warning"
                 @click="bookTravel">Book Travel</b-button></b-col>
-                <b-alert
+                <!-- <b-alert
       :show="dismissCountDown"
       dismissible
       variant="warning"
@@ -123,12 +125,23 @@
       class="w-50 text-center"
     >
       {{ alertMessage}}
-    </b-alert>
-    </b-form-row>
+    </b-alert> -->
+      </b-form-row>
             </b-container>
           </div>
         </div>
       </div>
+    </div>
+    <div  class="content d-flex justify-content-center">
+    <div class="mt-4">
+    <b-card :img-src="require('../assets/img/plane2.png')" img-width="400px" img-alt="Card image" img-right class="mb-3">
+      <b-card-text>
+        <h3>Traveling made easier!</h3>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+        Labore earum, nihil animi atque vero alias tempore mollitia vitae.
+      </b-card-text>
+    </b-card>
+    </div>
     </div>
     <Footer />
   </div>
@@ -172,7 +185,7 @@ export default {
         group_name: "",
         date_confirmed: "",
       },
-      perPage: 3,
+      perPage: 4,
       currentPage: 1,
       destinationFields: [
         { key: "country_name", label: "Country", sortable: true },
@@ -343,14 +356,29 @@ export default {
 body {
   background-color: #000;
 }
+
+.book {
+    padding-top: 170px;
+    padding-left: 390px;
+  }
+
+  .title1 {
+    font-family: impact;
+    font-size: 80px;
+    padding-top: 150px;
+    padding-left: 850px;
+  }
+
+  .text {
+    font-size: 20px;
+    padding-left: 810px;
+  }
+
+
+
 div {
   align-self: center;
   justify-content: center;
-
-  .title {
-    padding-top: 500px;
-    padding-left: 390px;
-  }
 
   .pill {
     width: 230px;
@@ -366,4 +394,7 @@ div {
     padding-bottom: 15px;
   }
 }
+  .card1 {
+  margin-top: 30px;
+  }
 </style>
