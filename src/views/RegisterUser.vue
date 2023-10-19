@@ -7,20 +7,30 @@
 
         <div class="inputs">
           <div class="input">
-            <input type="text"  placeholder="First Name" id="fname" v-model="form.fname" />
+            <input type="text" placeholder="First Name" id="fname" v-model="form.fname" />
           </div>
           <div class="input">
-            <input type="text"  placeholder="Last Name" id="lname" v-model="form.lname" />
+            <input type="text" placeholder="Last Name" id="lname" v-model="form.lname" />
           </div>
           <div class="input">
-            <input type="number"  placeholder="Age" id="age" v-model="form.age" />
+            <input type="number" placeholder="Age" id="age" v-model="form.age" />
           </div>
           <div class="input">
-            <input type="text"  placeholder="Username" id="username" v-model="form.username" />
+            <input type="text" placeholder="Username" id="username" v-model="form.username" />
           </div>
           <div class="input">
-            <input type="password"  placeholder="Password" id="username" v-model="form.password" />
+            <input type="password" placeholder="Password" id="username" v-model="form.password" />
           </div>
+          <b-alert
+          :show="dismissCountDown"
+          dismissible
+          variant="warning"
+          @dismissed="dismissCountDown=0"
+          @dismiss-count-down="countDownChanged"
+          class="text-center"
+          >
+          {{ alertMessage}}
+          </b-alert>
           <p class="login-register">
             Already have an account?
             <router-link class="router-link" :to="{ name: 'login' }">
@@ -46,6 +56,9 @@ export default {
   data() {
     return {
       form: {
+        alertMessage:"",
+        dismissSecs: 5,
+        dismissCountDown: 0,
         fname: "",
         lname: "",
         age: "",
@@ -55,32 +68,50 @@ export default {
     };
   },
   methods: {
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
+    showAlert(variant) {
+      this.variant = variant;
+      this.dismissCountDown = this.dismissSecs;
+    },
+
     handleSubmit(e) {
       e.preventDefault();
       axios
-        .post(`${API_URL}/user`, {
+        .post(`${ API_URL }/user`, {
         fname: this.form.fname,
         lname: this.form.lname,
         age: this.form.age,
         username: this.form.username,
         password: this.form.password,
         })
-        .then((response) => {
+        .then(
+          (res) => {
             this.success = 'Welcome';
-            this.response = JSON.stringify(response);
+            this.response = JSON.stringify(res);
             this.$router.push("/login");
             // this.$store.dispatch("login", user);
             // this.$router.push("/dashboard");
-        })
-        // .catch(error => {
-        //     this.response = 'Error: ' + error.response.status
-        // })
+        },
+        (err) => {
+          console.log(err);
+          console.log(err.response.data.error);
+          this.alertMessage = err.response.data.error;
+          this.showAlert();
+          },
+        );
         this.form.fname = '';
         this.form.lname = '';
         this.form.age = '';
         this.form.username = '';
         this.form.password = '';
-        }
+        
+        // .catch(error => {
+        //     this.response = 'Error: ' + error.response.status
+        // })
+        
+        },
     },
 }
 </script>

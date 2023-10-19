@@ -66,8 +66,6 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.state.loggedIn;
-      
-      
     },
   },
   
@@ -101,9 +99,23 @@ export default {
     handleLogin(e) {
       e.preventDefault();
       const user = { username: this.username, password: this.password };
-      this.$store.dispatch("login", user);
-    },
+      this.$store.dispatch("login", user)
+      .then(
+        (res)=> {
+          if (this.username && this.password) {
+            console.log(this.username, this.password);
+          }
+        },
+        (err) => {
+          console.log(err);
+          console.log(err.response,data.error);
+          this.alertMessage = err.response.data.error;
+          this.showAlert();
+        }
+      )
+    }
   },
+  
 };
 </script>
 

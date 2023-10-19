@@ -9,9 +9,9 @@
                 <b-button-group>
                 <b-button pill v-if="post.welcomeScreen" class="link d-flex justify-content-center" href="login" variant="light"> Login </b-button>
                 <b-button pill v-if="post.welcomeScreen" class="link1 d-flex align-content-center" href="register" variant="light"> Register </b-button>
-                <b-button pill class="link2" v-else to='../views/Login.vue'>
+                <!-- <b-button pill class="link2" v-else to='../views/Login.vue'>
                     View Destinations
-                </b-button>
+                </b-button> -->
                 </b-button-group>
                 
                 <!--<router-link class="link link-light" v-if="post.welcomeScreen" :to="{ name: 'login' }">
@@ -43,9 +43,9 @@ export default {
     flex-direction: column;
     justify-content: center;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    @media(min-width: 700px) {
-        min-height: 650px;
-        max-height: 650px;
+    @media(min-width: 500px) {
+        min-height: 465px;
+        max-height: 465px;
         flex-direction: row;
     }
 
@@ -56,23 +56,23 @@ export default {
         align-items: center;
         flex: 4;
         order: 2;
-        @media(min-wdith: 700px) {
+        @media(min-width: 500px) {
             order: 1;
         }
-        @media(min-width: 800px) {
+        @media(min-width: 500px) {
             flex: 3;
         }
         div {
             max-width: 375px;
             padding: 72px 24px;
-            @media(min-width: 700px) {
+            @media(min-width: 500px) {
                 padding: 0 24px;
             }
 
             h2 {
                 font-size: 32px;
                 font-weight: 300;
-                font-family: "kanit";
+                font-family: "Impact";
                 text-align: center;
                 text-transform: uppercase;
                 margin-bottom: 24px;
@@ -84,14 +84,14 @@ export default {
             p {
                 font-size: 18px;
                 font-family: "arial";
-                padding-left: 100px;
+                padding-left: 90px;
                 font-weight: 300;
                 line-height: 1.7;
             }
 
             .content-preview {
                 font-size: 18px;
-                padding-left: 90px;
+                padding-left: 50px;
                 max-height: 24px;
                 width: 250px;
                 white-space: nowrap;
@@ -104,7 +104,7 @@ export default {
                 font-family: helvetica;
                 text-transform: none;
                 margin-top: 20px;
-                margin-left: 60px;
+                margin-left: 50px;
                 width: 80px;
                 padding-bottom: 4px;
                 //padding-left: 4px;
@@ -179,10 +179,10 @@ export default {
         flex: 3;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
-        @media(min-width: 700px) {
+        @media(min-width: 500px) {
             order: 2;
         }
-        @media(min-width: 800px) {
+        @media(min-width: 500px) {
             flex: 4;
         }
 

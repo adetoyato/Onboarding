@@ -15,15 +15,15 @@ export default {
     data() {
         return {
             welcomeScreen: {
-                title: "Looking for a getaway?",
+                title: "Looking for a weekend getaway?",
                 message: "Book a travel now!",
                 welcomeScreen: true,
                 photo: "planebg1",
             },
             message1: [
                 {
-                    title: "Other places to see...",
-                    msgHTML: "Come, take a look!",
+                    title: "Get out of your comfort zone!",
+                    msgHTML: "And try to enjoy life outdoors!",
                     coverPhoto: "travel1",
                 }
             ]

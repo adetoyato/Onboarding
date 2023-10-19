@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Spinner />
     <Header />
     <div class="card bg-dark text-white" style="max-width: 1920px">
       <img src=../assets/img/carousel9.jpg class="card-img" alt="Stony Beach"/>
@@ -11,6 +12,7 @@
       <p class="text">
         「 The land of the rising sun. 」
       </p>
+      <b-button href="https://www.japan.travel/en/ph/" class="decoBtn" variant="warning"> Learn More </b-button>
         <h4 class="book">Book your flight here:</h4>
         <div>
           <div class="booking d-flex justify-content-center">
@@ -83,7 +85,7 @@
                 </b-modal>
               <b-form-datepicker
                   name="date"
-                  placeholder= "Choose Destination Date"
+                  placeholder= "Choose Departure Date"
                   :date-format-options="{
                     year: 'numeric',
                     month: 'numeric',
@@ -132,15 +134,65 @@
         </div>
       </div>
     </div>
-    <div  class="content d-flex justify-content-center">
-    <div class="mt-4">
+    <div class="content d-flex justify-content-center">
+    <div class="mt-4 mb-4">
     <b-card :img-src="require('../assets/img/plane2.png')" img-width="400px" img-alt="Card image" img-right class="mb-3">
       <b-card-text>
         <h3>Traveling made easier!</h3>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
-        Labore earum, nihil animi atque vero alias tempore mollitia vitae.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Labore earum, nihil animi <br> atque vero alias tempore mollitia vitae.
       </b-card-text>
     </b-card>
+
+    <b-card-group class="pt-4">
+    <b-card no-body class="overflow-hidden" style="max-width: 300px; max-height: 200px;">
+    <b-row no-gutters>
+      <b-col md="6">
+        <b-card-img :src="require('../assets/img/icon1.png')" img-width="50px" alt="Image" class="rounded-0"></b-card-img>
+      </b-col>
+      <b-col md="6">
+        <b-card-body title="Travel the world">
+        </b-card-body>
+      </b-col>
+    </b-row>
+  </b-card>
+
+    <b-card no-body class="overflow-hidden" style="max-width: 300px; max-height: 200px;">
+    <b-row no-gutters>
+      <b-col md="6">
+        <b-card-img :src="require('../assets/img/icon2.png')" alt="Image" class="rounded-0"></b-card-img>
+      </b-col>
+      <b-col md="6">
+        <b-card-body title="Go on business trips">
+        </b-card-body>
+      </b-col>
+    </b-row>
+  </b-card>
+
+    <b-card no-body class="overflow-hidden" style="max-width: 300px; max-height: 200px;">
+    <b-row no-gutters>
+      <b-col md="6">
+        <b-card-img :src="require('../assets/img/icon3.png')" alt="Image" class="rounded-0"></b-card-img>
+      </b-col>
+      <b-col md="6">
+        <b-card-body title="Go on vacations">
+        </b-card-body>
+      </b-col>
+    </b-row>
+  </b-card>
+
+    <b-card no-body class="overflow-hidden" style="max-width: 300px; max-height: 200px;">
+    <b-row no-gutters>
+      <b-col md="6">
+        <b-card-img :src="require('../assets/img/icon4.png')" alt="Image" class="rounded-0"></b-card-img>
+      </b-col>
+      <b-col md="6">
+        <b-card-body title="Meet new people">
+        </b-card-body>
+      </b-col>
+    </b-row>
+  </b-card>
+  </b-card-group>
     </div>
     </div>
     <Footer />
@@ -150,6 +202,7 @@
 <script>
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
+import Spinner from "@/components/Spinner.vue";
 import { mapState, mapGetters } from "vuex";
 import { API_URL } from "@/config/dev.env";
 import axios from "axios";
@@ -158,6 +211,7 @@ export default {
   components: {
     Header,
     Footer,
+    Spinner,
   },
   computed: {
     ...mapState(["groupState"]),
@@ -283,7 +337,7 @@ export default {
           (err) => {
             console.log(err.response.data.error);
             this.boxTwo = ''
-            this.$bvModal.msgBoxOk('You have already booked a flight!',{
+            this.$bvModal.msgBoxOk('Unable to book travel.',{
             title: 'Error',
             size: 'sm',
             buttonSize: 'sm',
@@ -358,7 +412,7 @@ body {
 }
 
 .book {
-    padding-top: 170px;
+    padding-top: 150px;
     padding-left: 390px;
   }
 
@@ -382,6 +436,11 @@ div {
 
   .pill {
     width: 230px;
+  }
+
+  .decoBtn {
+    margin-left: 870px;
+    width: 150px;
   }
 
   .container {
