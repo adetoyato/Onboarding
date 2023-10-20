@@ -1,6 +1,7 @@
 <template>
 <div>
   <Header />
+  <b-overlay :show="show" rounded="sm">
   <div class="profile">
   <div class="card bg-dark text-white" style="max-width: 1920px;">
   <img src=../assets/img/carouseltest2.jpg class="card-img" alt="Stony Beach"/>
@@ -106,6 +107,7 @@
   </div>
 <Footer />
   </div>
+  </b-overlay>
   </div>
 </template>
 
@@ -132,6 +134,7 @@ export default {
 
   data() {
     return {
+      show: true,
       memberData:[],
       ticketList:[],
       ticket: {
@@ -193,7 +196,18 @@ export default {
       ],
     };
   },
+
+  mounted() {
+        this.showToggle();
+  },
+
   methods: {
+    showToggle() {
+            setTimeout(() => {
+                this.show = false;
+            },
+            1000);
+        },
 
     async deleteTicket(row) {
     this.deleteMember(row)

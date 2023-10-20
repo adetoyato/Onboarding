@@ -10,7 +10,7 @@ import AddGroup from '../views/AddGroup.vue'
 import ViewUser from '../views/ViewUser.vue'
 import Destinations from '../views/Destinations.vue'
 import Footer from '../components/Footer.vue'
-// import Spinner from '../components/Spinner.vue'
+import Spinner from '../components/Spinner.vue'
 
 
 Vue.use(VueRouter);
@@ -84,11 +84,11 @@ const routes = [
             name: 'footer',
             component: Footer,
         },
-        // {
-        //     path: '/spinner',
-        //     name: 'spinner',
-        //     component: Spinner,
-        // }
+        {
+            path: '/spinner',
+            name: 'spinner',
+            component: Spinner,
+        }
 ]
 
 const router = new VueRouter({

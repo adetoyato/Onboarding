@@ -13,8 +13,8 @@
                     <b-col class="mt-7">
                       <b-form-row>
                         <div>
-                          <b-col><b-form-group label="Choose Country:" class="label1"></b-form-group></b-col>
-                          <b-col><b-form-select class="select" v-model="selected" :options="options"></b-form-select></b-col>
+                          <b-col><b-form-group label="Choose Country:" class="label1"></b-form-group></b-col> 
+                          <b-col><b-form-select @change="fetchCity()"  class="select" v-model="selected" :options="options"></b-form-select></b-col>
                           <div class="select1 mt-3">Country ID: <strong>{{ selected }}</strong></div>
                         </div>
                         <div>
@@ -171,7 +171,8 @@ export default {
     async fetchCountry() {
       this.options = [];
       this.$store.dispatch("fetchCountry").then((res) => {
-        console.log(res.data);
+        console.log(res.data)
+        
 
         res.data.forEach((val) => {
           this.options.push({ value: val.country_id, text: val.country_name });
@@ -185,16 +186,20 @@ export default {
     async fetchCity() {
       this.options1 = [];
       this.$store.dispatch("fetchCity").then((res) => {
-        console.log(res.data);
 
         res.data.forEach((val) => {
-            val.country_id == this.options1.city_name
+          if (
+            this.selected == val.country_id
+          )
+          {
             this.options1.push({ value: val.city_id, text: val.city_name });
-
-            
+          }
+          
+            // this.selected = this.options1.country_name
+            // this.options1.push({ value: val.city_id, text: val.city_name });
         });
+        console.log("city", this.options1)
 
-        console.log(this.options1);
         this.group.city_name = res.data;
       });
     },
@@ -278,7 +283,7 @@ export default {
   created() {
     this.fetchGroup();
     this.fetchCountry();
-    this.fetchCity();
+    // this.fetchCity();
   },
 };
 </script>

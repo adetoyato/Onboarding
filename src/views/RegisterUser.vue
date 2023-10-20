@@ -24,7 +24,7 @@
           <b-alert
           :show="dismissCountDown"
           dismissible
-          variant="warning"
+          :variant="variant"
           @dismissed="dismissCountDown=0"
           @dismiss-count-down="countDownChanged"
           class="text-center"
@@ -55,10 +55,11 @@ export default {
   components: {},
   data() {
     return {
+      variant: "",
+      alertMessage:"",
+      dismissSecs: 5,
+      dismissCountDown: 0,
       form: {
-        alertMessage:"",
-        dismissSecs: 5,
-        dismissCountDown: 0,
         fname: "",
         lname: "",
         age: "",
@@ -98,14 +99,15 @@ export default {
           console.log(err);
           console.log(err.response.data.error);
           this.alertMessage = err.response.data.error;
-          this.showAlert();
+          this.showAlert("danger");
           },
+        this.form.fname = '',
+        this.form.lname = '',
+        this.form.age = '',
+        this.form.username = '',
+        this.form.password = '',
         );
-        this.form.fname = '';
-        this.form.lname = '';
-        this.form.age = '';
-        this.form.username = '';
-        this.form.password = '';
+        
         
         // .catch(error => {
         //     this.response = 'Error: ' + error.response.status

@@ -1,6 +1,7 @@
 <template>
 <div>
   <Spinner />
+  <b-overlay :show="show" rounded="sm">
   <div class="card bg-white text-white" style="max-width: 1908px">
     <Header />
   <img
@@ -17,8 +18,6 @@
       <p class="text">
         Come and view where you could plan the perfect vacation!
       </p>
-
-      <!-- <p class="text1">Last updated 3 mins ago</p> -->
     </div>
 
     <div class="pt-4">
@@ -128,8 +127,9 @@
         </b-card>
       </b-card-group>
     </div>
-    <Footer />
   </div>
+  </b-overlay>
+  <Footer />
   </div>
 </template>
 
@@ -144,14 +144,23 @@ export default {
     Footer,
     Spinner,
   },
-  methods: {
-    prev() {
-      this.$refs.myCarousel.prev();
-    },
-    next() {
-      this.$refs.myCarousel.next();
-    },
+  data() {
+    return{
+      show: true,
+    }
   },
+  mounted() {
+        this.showToggle();
+  },
+
+  methods: {
+    showToggle() {
+            setTimeout(() => {
+                this.show = false;
+            },
+            1000);
+        }
+    },
   created() {
     localStorage.role;
   },

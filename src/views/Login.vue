@@ -24,10 +24,10 @@
           <b-alert
       :show="dismissCountDown"
       dismissible
-      variant="warning"
+      :variant="variant"
       @dismissed="dismissCountDown=0"
       @dismiss-count-down="countDownChanged"
-      class="w-50 text-center"
+      class="text-center"
     >
       {{ alertMessage}}
     </b-alert>
@@ -52,6 +52,7 @@ export default {
   components: {},
   data() {
     return {
+      variant: "",
       alertMessage:"",
       dismissSecs: 5,
       dismissCountDown: 0,
@@ -107,10 +108,9 @@ export default {
           }
         },
         (err) => {
-          console.log(err);
-          console.log(err.response,data.error);
+          console.log(err.response.data.error);
           this.alertMessage = err.response.data.error;
-          this.showAlert();
+          this.showAlert("danger");
         }
       )
     }

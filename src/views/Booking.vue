@@ -2,6 +2,7 @@
   <div>
     <Spinner />
     <Header />
+    <b-overlay :show="show" rounded="sm">
     <div class="card bg-dark text-white" style="max-width: 1920px">
       <img src=../assets/img/carousel9.jpg class="card-img" alt="Stony Beach"/>
       <div
@@ -195,6 +196,7 @@
   </b-card-group>
     </div>
     </div>
+    </b-overlay>
     <Footer />
   </div>
 </template>
@@ -226,6 +228,7 @@ export default {
   },
   data() {
     return {
+      show: true,
       boxTwo: '',
       alertMessage:'',
       dismissSecs: 5,
@@ -252,7 +255,18 @@ export default {
     };
   },
 
+   mounted() {
+        this.showToggle();
+  },
+
   methods: {
+    showToggle() {
+            setTimeout(() => {
+                this.show = false;
+            },
+            1000);
+        },
+
       countDownChanged(dismissCountDown) {
         this.dismissCountDown = dismissCountDown
       },
