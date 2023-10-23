@@ -306,7 +306,7 @@ export default {
 
     async fetchFlight() {
       this.$store.dispatch("fetchFlight").then((res) => {
-        this.listFlights = [];
+        this.listFlights = [0];
 
         res.forEach((val) => {
           if (
@@ -332,7 +332,9 @@ export default {
             axios
               .post(`${API_URL}/ticket`, {
                 city_id: this.destination.city_id,
+                city_name: this.destination.city_name,
                 country_id: this.destination.country_id,
+                country_name: this.destination.country_name,
                 user_id: user.res[0].user_id,
                 date: this.destination.date_confirmed,
                 flight_id: this.listFlights[0].flight_id,
@@ -351,7 +353,7 @@ export default {
           (err) => {
             console.log(err.response.data.error);
             this.boxTwo = ''
-            this.$bvModal.msgBoxOk('Unable to book travel.',{
+            this.$bvModal.msgBoxOk(err.response.data.error,{
             title: 'Error',
             size: 'sm',
             buttonSize: 'sm',

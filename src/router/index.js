@@ -11,6 +11,7 @@ import ViewUser from '../views/ViewUser.vue'
 import Destinations from '../views/Destinations.vue'
 import Footer from '../components/Footer.vue'
 import Spinner from '../components/Spinner.vue'
+import AddFlight from '../views/AddFlight.vue'
 
 
 Vue.use(VueRouter);
@@ -75,8 +76,8 @@ const routes = [
             component: ViewUser,
         },
         {
-            path: '/flight',
-            name: 'flight',
+            path: '/destinations',
+            name: 'destinations',
             component: Destinations,
         },
         {
@@ -88,6 +89,11 @@ const routes = [
             path: '/spinner',
             name: 'spinner',
             component: Spinner,
+        },
+        {
+            path: '/flights',
+            name: 'flights',
+            component: AddFlight,
         }
 ]
 

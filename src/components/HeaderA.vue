@@ -10,8 +10,8 @@
   <div>
       <b-navbar-nav>
           <b-nav-item exact-active-class="active" to="user"> Users </b-nav-item>
-          <b-nav-item exact-active-class="active" to="flight"> Destination </b-nav-item>
-          <b-nav-item exact-active-class="active" to="add"> Flights </b-nav-item>
+          <b-nav-item exact-active-class="active" to="destinations"> Destination </b-nav-item>
+          <b-nav-item exact-active-class="active" to="add"> Group </b-nav-item>
       </b-navbar-nav>
   </div>
 

@@ -167,20 +167,20 @@ export default {
     } else {
       this.state.age = true;
     }
-    if (this.user.username === null || this.user.age.username < 1) {
+    if (this.user.username === null || this.user.username.length  < 1) {
       this.state.username = false;
     } else {
       this.state.username = true;
     }
-    if (this.user.password === null || this.user.age.password < 1) {
+    if (this.user.password === null || this.user.password.length  < 1) {
       this.state.password = false;
     } else {
       this.state.password = true;
     }
-    if (this.user.group === null || this.user.age.group < 1) {
-      this.state.group = false;
+    if (this.user.group_name === null || this.user.group_name.length  < 1) {
+      this.state.group_name = false;
     } else {
-      this.state.group = true;
+      this.state.group_name = true;
     }
 
     if (
@@ -189,7 +189,7 @@ export default {
       this.user.age != null &&
       this.user.username != null &&
       this.user.password != null &&
-      this.user.group != null
+      this.user.group_name != null
     ) {
       return true;
     } else {

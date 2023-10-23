@@ -9,9 +9,8 @@
               <b-col class="py-2">
                 <b-col class="">
                   <b-container class="container-card rounded p-3">
-                    <h4 class="title">Add Group and Flight</h4>
+                    <h4 class="title">Add Flight</h4>
                     <b-col class="mt-7">
-                      <b-button class="grpbtn1" variant="warning" href="flights"> Add Flights </b-button>
                       <b-form-row>
                         <div>
                           <b-col><b-form-group label="Choose Country:" class="label1"></b-form-group></b-col> 
@@ -24,11 +23,15 @@
                           <div class="select1 mt-3">City ID: <strong>{{ selected1 }}</strong></div>
                         </div>
                         <div>
-                          <b-col><b-form-group label="Enter Group Name:" class="label1"></b-form-group></b-col>
-                          <b-col><b-form-input v-model="group.group_name" class="grpName" placeholder="Enter Group Name"></b-form-input></b-col>
+                          <b-col><b-form-group label="Enter Airline Carrier:" class="label1"></b-form-group></b-col>
+                          <b-col><b-form-input v-model="flight.airline_carrier" class="grpName" placeholder="Enter Airline Carrier"></b-form-input></b-col>
                         </div>
                         </b-form-row>
-                      <b-col><b-button class="grpbtn" variant="success" type="submit" @click="saveGroup"> Submit Group </b-button></b-col>
+                        <b-form-row>
+                      <div>
+                      <b-col><b-button class="grpbtn" variant="success" type="submit" @click="saveFlight"> Add Flight </b-button></b-col>
+                      </div>
+                        </b-form-row>
                       <b-form>
                         <div>
                           <div>
@@ -47,7 +50,7 @@
                                   title="Delete"
                                   id="delete"
                                   type="submit"
-                                  @click="deleteGroup(row)">
+                                  @click="deleteFlight(row)">
                                   <b-icon
                                     class="delete-btn"
                                     icon="trash-fill"></b-icon>
@@ -89,29 +92,35 @@ export default {
     HeaderA,
   },
   computed: {
-    ...mapState(["groupState"]),
-    ...mapGetters({ groupList: "fetchGroup",  cityList: "fetchCity", countryList: "fetchCountry", flightList: "fetchFlight"}),
+    ...mapState(["flightState"]),
+    ...mapGetters({ cityList: "fetchCity", countryList: "fetchCountry", flightList: "fetchFlight"}),
     rows() {
-      return this.groupList.length;
+      return this.flightList.length;
     },
   },
   data() {
     return {
-      group: {
-        city_id: "",
-        city_name: "",
+      flight: {
+        flight_id: "",
+        flight_number: "",
+        airline_carrier: "",
         country_id: "",
         country_name: "",
-        group_id: "",
-        group_name: "",
+        city_id: "",
+        city_name: "",
       },
       text: "",
       perPage: 4,
       currentPage: 4,
       fields: [
         {
-          key: "city_name",
-          label: "Destination City",
+          key: "flight_number",
+          label: "Flight Number",
+          sortable: true,
+        },
+        {
+          key: "airline_carrier",
+          label: "Airline Carrier",
           sortable: true,
         },
         {
@@ -120,12 +129,9 @@ export default {
           sortable: true,
         },
         {
-          key: "group_name",
-          label: "Group",
-          sortable: false,
-          thStyle: {
-            width: "20px",
-          },
+          key: "city_name",
+          label: "Destination City",
+          sortable: true,
         },
         {
           key: "delete",
@@ -151,10 +157,10 @@ export default {
     //     }
     //   );
     // },
-    async deleteGroup(row) {
-      await this.$store.dispatch("deleteGroup", row.item.group_id).then(
+    async deleteFlight(row) {
+      await this.$store.dispatch("deleteFlight", row.item.flight_id).then(
         (res) => {
-          this.fetchGroup();
+          this.fetchFlight();
         },
         (err) => {
           console.log(err);
@@ -162,8 +168,8 @@ export default {
       );
     },
     
-    async fetchGroup() {
-      this.$store.dispatch("fetchGroup").then((res) => {
+    async fetchFlight() {
+      this.$store.dispatch("fetchFlight").then((res) => {
         console.log(res);
         this.tableItems = res.data;
       });
@@ -173,14 +179,12 @@ export default {
       this.options = [];
       this.$store.dispatch("fetchCountry").then((res) => {
         console.log(res.data)
-        
 
         res.data.forEach((val) => {
           this.options.push({ value: val.country_id, text: val.country_name });
         });
-
         console.log(this.options);
-        this.group.country_name = res.data;
+        this.flight.country_name = res.data;
       });
     },
 
@@ -195,30 +199,29 @@ export default {
           {
             this.options1.push({ value: val.city_id, text: val.city_name });
           }
-          
             // this.selected = this.options1.country_name
             // this.options1.push({ value: val.city_id, text: val.city_name });
         });
         console.log("city", this.options1)
 
-        this.group.city_name = res.data;
+        this.flight.city_name = res.data;
       });
     },
 
-    async saveGroup(e) {
+    async saveFlight(e) {
       e.preventDefault()
       await axios
-      .post(`${API_URL}/group`, {
+      .post(`${API_URL}/flight`, {
+        airline_carrier: this.flight.airline_carrier,
         country_id: this.selected,
         country_name: this.selected,
         city_id: this.selected1,
         city_name: this.selected1,
-        group_name: this.group.group_name,
       })
 
       .then (
         (res) => {
-        this.fetchGroup();
+        this.fetchFlight();
         console.log(res);
         this.boxTwo = ''
         this.$bvModal.msgBoxOk('Successfully added!',{
@@ -256,26 +259,33 @@ export default {
   
 
   validation() {
-    if (this.group.city_name === null || this.group.city_name< 1) {
-      this.state.city_name = false;
+    if (this.flight.flight_number === null || this.flight.flight_number.length< 1) {
+      this.state.flight_number = false;
     } else {
-      this.state.city_name = true;
+      this.state.flight_number = true;
     }
-    if (this.group.country_name === null || this.group.country_name.length < 1) {
+    if (this.flight.airline_carrier === null || this.flight.airline_carrier.length< 1) {
+      this.state.airline_carrier = false;
+    } else {
+      this.state.airline_carrier = true;
+    }
+    if (this.flight.country_name === null || this.flight.country_name.length < 1) {
       this.state.country_name = false;
     } else {
       this.state.country_name = true;
     }
-    if (this.group.group_name === null || this.group.group_name.length < 1) {
-      this.state.group_name = false;
+    if (this.flight.city_name === null || this.flight.city_name.length< 1) {
+      this.state.city_name = false;
     } else {
-      this.state.group_name = true;
+      this.state.city_name = true;
     }
+    
 
     if (
-      this.group.city_name != null &&
-      this.group.country_name != null &&
-      this.group.group_name != null
+      this.flight.flight_number != null &&
+      this.flight.airline_carrier != null &&
+      this.flight.country_name != null &&
+      this.flight.city_name != null
     ) {
       return true;
     } else {
@@ -284,7 +294,7 @@ export default {
   },
 
   created() {
-    this.fetchGroup();
+    this.fetchFlight();
     this.fetchCountry();
     // this.fetchCity();
   },
@@ -294,7 +304,7 @@ export default {
 <style lang="scss" scoped>
 .title {
   margin-left: 150px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .select {
@@ -314,12 +324,6 @@ export default {
 .grpbtn {
   margin-top: 10px;
   margin-left: 900px;
-  width: 200px;
-}
-
-.grpbtn1 {
-  margin-bottom: 20px;
-  margin-left: 135px;
   width: 200px;
 }
 

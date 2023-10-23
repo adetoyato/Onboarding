@@ -26,7 +26,7 @@ export default {
   methods: {
     checkRoute() {
       if (
-          this.$route.name === "flight" ||
+          this.$route.name === "destination" ||
           this.$route.name === "user" ||
           this.$route.name === "add" ||
           this.$route.name === "dashboard" ||
@@ -34,6 +34,7 @@ export default {
           this.$route.name === "profile" ||
           this.$route.name === "login" || 
           this.$route.name === "register" ||
+          this.$route.name === "flights" ||
           this.$route.name === "home"
       ) {
         this.navigation = true;

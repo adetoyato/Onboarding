@@ -99,6 +99,7 @@ export default new Vuex.Store({
 
     async fetchFlight({ commit }) {
       const response = await axios.get(`${API_URL}/flight`);
+      commit("FETCH_ALL_FLIGHT", response.data);
       return response.data;
     },
 
@@ -215,6 +216,15 @@ export default new Vuex.Store({
       console.log(response.data);
     },
 
+    async deleteFlight({ commit }, flight_id) {
+      console.log("flight_id", flight_id)
+      const response = await axios.patch(
+        `${API_URL}/flight/delete/${flight_id}`
+      );
+      commit("DELETE_FLIGHT", response.data);
+      console.log(response.data);
+    },
+
     //Login
     //city
     // async fetchCity({ commit }) {
@@ -310,6 +320,10 @@ export default new Vuex.Store({
       state.groupState.push(data);
     },
 
+    ADD_FLIGHT(state, data) {
+      state.flightState.push(data);
+    },
+
     FETCH_ALL_CITY(state, cityState) {
       state.cityState = cityState;
     },
@@ -326,12 +340,12 @@ export default new Vuex.Store({
       state.userState = userState;
     },
 
-    FETCH_ALL_FLIGHT(state, flightState) {
-      state.flightState = flightState;
-    },
-
     FETCH_ALL_MEMBER(state, memberState) {
       state.memberState = memberState;
+    },
+
+    FETCH_ALL_FLIGHT(state, flightState) {
+      state.flightState = flightState;
     },
 
     FETCH_ALL_TICKET(state, ticketState) {
